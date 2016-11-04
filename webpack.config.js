@@ -1,20 +1,19 @@
-'use strict';
-
 const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const autoprefixer = require('autoprefixer');
 
 module.exports = {
   devtool: (process.env.NODE_ENV === 'development' ?
     'cheap-module-eval-inline-source-map' : 'cheap-module-source-map'),
 
-  context: path.join(__dirname, 'frontend'),
+  context: path.join(__dirname, 'frontend', 'js'),
 
   entry: {
     index: [
       'webpack-dev-server/client', // --inline
       'webpack/hot/dev-server',    // --hot
-      './src/index'
+      './index'
     ],
   },
 
@@ -25,7 +24,7 @@ module.exports = {
   },
 
   resolve: {
-    extensions: ['', '.js', '.jsx', '.scss']
+    extensions: ['', '.js', '.jsx', '.css', '.scss']
   },
 
   resolveLoader: {
@@ -49,7 +48,7 @@ module.exports = {
     loaders: [
       {
         test: /\.jsx?$/,
-        loader: 'babel',
+        loaders: ['react-hot', 'babel-loader'],
         include: path.join(__dirname, 'frontend'),
         query: {
           presets: ['es2015', 'stage-0', 'react']
@@ -64,7 +63,7 @@ module.exports = {
         )
       },
       {
-        test: /\.(png|jpg|svg|ttf|eot|woff|woff2)$/,
+        test: /\.(png|jpg|svg|ttf|otf|eot|woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
         // hash is important for hot reloading
         loader: 'file?name=[name].[ext]?[hash]'
       }
@@ -88,8 +87,11 @@ module.exports = {
       ]
     })
   ]
+};
 
-  devServer: {
+if (process.env.NODE_ENV === 'development') {
+
+  module.exports.devServer = {
     host: 'localhost',  // default
     port: 8080,  // default
     hot: true
@@ -99,10 +101,11 @@ module.exports = {
         target: 'http://localhost:3000'
       }
     ]*/
-  }
-};
+  };
+}
 
-if (NODE_ENV === 'production') {
+if (process.env.NODE_ENV === 'production') {
+
   module.exports.plugins.push(
     new webpack.optimize.UglifyJsPlugin({
       compress: {
