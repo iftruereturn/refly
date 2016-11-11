@@ -1,7 +1,11 @@
-import { createStore, applyMiddleware } from 'redux';
+/* eslint no-underscore-dangle: [0]*/
+
+import { createStore, applyMiddleware, compose } from 'redux';
 import createLogger from 'redux-logger';
 import thunk from 'redux-thunk';
 import reflyApp from '../reducers';
+
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const configureStore = () => {
   const middlewares = [thunk];
@@ -12,7 +16,9 @@ const configureStore = () => {
 
   return createStore(
     reflyApp,
-    applyMiddleware(...middlewares),
+    composeEnhancers(
+      applyMiddleware(...middlewares),
+    )
   );
 };
 
