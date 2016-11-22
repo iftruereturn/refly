@@ -1,7 +1,8 @@
 import React from 'react';
+import FlyerEditor from '../containers/FlyerEditor';
 
 const App = () => (
-  <div>Hell!</div>
+  <FlyerEditor />
 );
 
 export default App;

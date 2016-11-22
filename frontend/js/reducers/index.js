@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux';
-import flyer from './flyer';
+import flyerInfo from './flyerInfo';
+import flyerStack from './flyerStack';
 
 const reflyApp = combineReducers({
-  flyer,
+  flyerInfo,
+  flyerStack,
 });
 
 export default reflyApp;

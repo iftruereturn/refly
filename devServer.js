@@ -1,5 +1,5 @@
 // WEBPACK DEV SERVER
-// USE IT WHEN HAVE TROUBLES WITH WEBPACK-HOT-MIDDLEWARE
+// USE IT IF YOU HAVE TROUBLES WITH WEBPACK-HOT-MIDDLEWARE
 const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
 const config = require('./webpack.dev.config');
