@@ -14,6 +14,18 @@ const flyerStack = (state = initialState, action) => {
         },
       ];
 
+    case flyerActions.MOVE_WIDGET:
+      return state.map((widget, index, arr) => {
+        const { hoverIndex, dragIndex } = payload;
+
+        if (index === dragIndex) {
+          return arr[hoverIndex];
+        } else if (index === hoverIndex) {
+          return arr[dragIndex];
+        }
+        return widget;
+      });
+
     default:
       return state;
   }

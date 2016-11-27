@@ -1,5 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
+const autoprefixer = require('autoprefixer');
 
 module.exports = {
   devtool: 'eval',
@@ -60,7 +61,7 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin()
   ],
-
+  postcss: [ autoprefixer({ browsers: ['last 2 versions'] }) ]/*,
   /*devServer: {
     host: 'localhost',  // default
     port: 8080,  // default

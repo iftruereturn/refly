@@ -1,10 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import * as FlyerActions from '../actions/FlyerActions';
-import FlyerEditorPage from '../components/pages/FlyerEditorPage';
 
-const FlyerEditor = props => (
-  <FlyerEditorPage {...props} />
+import * as FlyerActions from '../actions/FlyerActions';
+import FlyerStackComponent from '../components/FlyerStackComponent';
+
+const FlyerStackEditor = props => (
+  <FlyerStackComponent {...props} />
 );
 
 const mapStateToProps = state => (
@@ -15,4 +16,4 @@ const mapStateToProps = state => (
 // const mapDispatchToProps = (dispatch) => {
 // }
 
-export default connect(mapStateToProps, FlyerActions)(FlyerEditor);
+export default connect(mapStateToProps, FlyerActions)(FlyerStackEditor);

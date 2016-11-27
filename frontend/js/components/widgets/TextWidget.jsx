@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
+import Widget from './Widget';
 
 /*
 export default class TextWidget extends Component {
@@ -20,16 +21,19 @@ export default class TextWidget extends Component {
 }
 */
 
-const TextWidget = ({ title, text }) => (
-  <div>
-    <p>{title}</p>
+const TextWidget = ({ title, text, id, index, moveWidget }) => (
+  <Widget id={id} index={index} moveWidget={moveWidget}>
+    <h2>{title}</h2>
     <p>{text}</p>
-  </div>
+  </Widget>
 );
 
 TextWidget.propTypes = {
-  title: React.PropTypes.string.isRequired,
-  text: React.PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
+  index: PropTypes.number.isRequired,
+  title: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired,
+  moveWidget: PropTypes.func.isRequired,
 };
 
 export default TextWidget;

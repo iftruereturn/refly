@@ -1,5 +1,5 @@
 import React from 'react';
-import FlyerEditor from '../containers/FlyerEditor';
+import FlyerEditor from './pages/FlyerEditor';
 
 const App = () => (
   <FlyerEditor />
