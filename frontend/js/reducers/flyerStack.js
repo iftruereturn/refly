@@ -26,6 +26,32 @@ const flyerStack = (state = initialState, action) => {
         return widget;
       });
 
+    case flyerActions.OPEN_WIDGET_EDIT:
+      return state.map((widget) => {
+        const { widgetId } = payload;
+
+        if (widget.id === widgetId) {
+          return {
+            ...widget,
+            editing: true,
+          };
+        }
+        return widget;
+      });
+
+    case flyerActions.CLOSE_WIDGET_EDIT:
+      return state.map((widget) => {
+        const { widgetId } = payload;
+
+        if (widget.id === widgetId) {
+          return {
+            ...widget,
+            editing: false,
+          };
+        }
+        return widget;
+      });
+
     default:
       return state;
   }

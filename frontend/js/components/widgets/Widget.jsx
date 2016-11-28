@@ -73,17 +73,27 @@ class Widget extends Component { // eslint-disable-line react/prefer-stateless-f
     isDragging: PropTypes.bool.isRequired,
     id: PropTypes.number.isRequired, // eslint-disable-line react/no-unused-prop-types
     index: PropTypes.number.isRequired, // eslint-disable-line react/no-unused-prop-types
+    editing: PropTypes.bool,
     moveWidget: PropTypes.func.isRequired, // eslint-disable-line react/no-unused-prop-types
+    openWidgetEdit: PropTypes.func.isRequired,
+    closeWidgetEdit: PropTypes.func.isRequired,
     children: PropTypes.node.isRequired,
   }
 
   render() {
     const { children,
-      connectDragSource, connectDropTarget, isDragging } = this.props;
-    const opacity = isDragging ? 0 : 1;
+      connectDragSource, connectDropTarget, isDragging,
+      id, editing,
+      openWidgetEdit, closeWidgetEdit } = this.props;
+    const classes = `widget ${isDragging ? 'dnd-transparent' : ''}`;
 
     return connectDragSource(connectDropTarget(
-      <div className="widget" style={{ opacity }}>
+      <div className={classes}>
+        <button
+          onClick={() => { (!editing ? openWidgetEdit : closeWidgetEdit)(id); }}
+        >
+          {!editing ? 'Edit' : 'Cancel'}
+        </button>
         {children}
       </div>
     ));

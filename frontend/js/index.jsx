@@ -1,5 +1,3 @@
-/* eslint global-require: [0]*/
-
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
@@ -21,7 +19,7 @@ ReactDOM.render(
 
 if (module.hot) {
   module.hot.accept('./components/Root', () => {
-    const RootContainer = require('./components/Root').default;
+    const RootContainer = require('./components/Root').default; // eslint-disable-line global-require
 
     ReactDOM.render(
       <AppContainer>

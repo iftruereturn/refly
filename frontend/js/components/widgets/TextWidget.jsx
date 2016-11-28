@@ -1,39 +1,48 @@
-import React, { PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 import Widget from './Widget';
 
-/*
-export default class TextWidget extends Component {
+
+class TextWidget extends Component { // eslint-disable-line react/prefer-stateless-function
   static propTypes = {
-    title: React.PropTypes.string.isRequired,
-    text: React.PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
+    index: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    text: PropTypes.string.isRequired,
+    editing: PropTypes.bool,
+    moveWidget: PropTypes.func.isRequired, // eslint-disable-line react/no-unused-prop-types
+    openWidgetEdit: PropTypes.func.isRequired,
+    closeWidgetEdit: PropTypes.func.isRequired,
   }
 
   render() {
-    const { text, title } = this.props;
+    const { text, title, id, index, editing,
+      moveWidget, openWidgetEdit, closeWidgetEdit } = this.props;
 
     return (
-      <div>
-        <p>{title}</p>
-        <p>{text}</p>
-      </div>
+      <Widget
+        id={id}
+        index={index}
+        editing={editing}
+        moveWidget={moveWidget}
+        openWidgetEdit={openWidgetEdit}
+        closeWidgetEdit={closeWidgetEdit}
+      >
+
+        { !editing ?
+          <div>
+            <h2>{title}</h2>
+            <p>{text}</p>
+          </div> :
+          <div>
+            title: <input type="text" />
+            text: <input type="text" />
+          </div>
+        }
+
+      </Widget>
     );
   }
 }
-*/
-
-const TextWidget = ({ title, text, id, index, moveWidget }) => (
-  <Widget id={id} index={index} moveWidget={moveWidget}>
-    <h2>{title}</h2>
-    <p>{text}</p>
-  </Widget>
-);
-
-TextWidget.propTypes = {
-  id: PropTypes.number.isRequired,
-  index: PropTypes.number.isRequired,
-  title: PropTypes.string.isRequired,
-  text: PropTypes.string.isRequired,
-  moveWidget: PropTypes.func.isRequired,
-};
 
 export default TextWidget;
+

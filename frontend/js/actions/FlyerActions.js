@@ -28,3 +28,17 @@ export const moveWidget = (dragIndex, hoverIndex) => ({
     hoverIndex,
   },
 });
+
+export const openWidgetEdit = widgetId => ({
+  type: FlyerActions.OPEN_WIDGET_EDIT,
+  payload: {
+    widgetId,
+  },
+});
+
+export const closeWidgetEdit = widgetId => ({
+  type: FlyerActions.CLOSE_WIDGET_EDIT,
+  payload: {
+    widgetId,
+  },
+});

@@ -7,13 +7,15 @@ import TextWidget from './widgets/TextWidget';
 @DragDropContext(HTML5Backend) // eslint-disable-line new-cap
 export default class FlyerEditorComponent extends Component {
   static propTypes = {
+    flyerStack: PropTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types
     addWidget: PropTypes.func.isRequired,
     moveWidget: PropTypes.func.isRequired,
-    flyerStack: PropTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types
+    openWidgetEdit: PropTypes.func.isRequired,
+    closeWidgetEdit: PropTypes.func.isRequired,
   }
 
   render() {
-    const { addWidget, moveWidget,
+    const { addWidget, moveWidget, openWidgetEdit, closeWidgetEdit,
       flyerStack } = this.props;
 
     const flyer = flyerStack.map((widget, index) => {
@@ -25,8 +27,11 @@ export default class FlyerEditorComponent extends Component {
               title={widget.title}
               text={widget.text}
               id={widget.id}
+              editing={widget.editing}
               index={index}
               moveWidget={moveWidget}
+              openWidgetEdit={openWidgetEdit}
+              closeWidgetEdit={closeWidgetEdit}
             />
           );
 
@@ -36,12 +41,10 @@ export default class FlyerEditorComponent extends Component {
     });
 
     return (
-      <div>
+      <div className="flyer-stack">
         {flyer}
         <button onClick={() => addWidget()}>Add Widget</button>
       </div>
     );
   }
 }
-
-// FlyerStackEditor = DragDropContext(HTML5Backend)(FlyerStackEditor);

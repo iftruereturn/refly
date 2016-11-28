@@ -1,9 +1,27 @@
+html {
+  overflow-y: scroll;
+}
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  background-color: #f1f1f1;
+}
 
 .flyer-editor {
-  background-color: #fefefe;
+  display: flex;
+}
+
+.flyer-stack {
+  margin: auto;
 }
 
 .widget {
   background-color: beige;
   border: 3px solid black;
+  width: 400px;
+}
+
+.dnd-transparent {
+  opacity: 0.4;
 }
