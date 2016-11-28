@@ -17,8 +17,11 @@ export const addWidget = () => {
   };
 };
 
-export const deleteWidget = () => ({
+export const deleteWidget = widgetId => ({
   type: FlyerActions.DELETE_WIDGET,
+  payload: {
+    widgetId,
+  },
 });
 
 export const moveWidget = (dragIndex, hoverIndex) => ({

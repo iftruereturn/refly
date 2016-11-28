@@ -52,6 +52,13 @@ const flyerStack = (state = initialState, action) => {
         return widget;
       });
 
+    case flyerActions.DELETE_WIDGET:
+      return state.filter((widget) => {
+        const { widgetId } = payload;
+
+        return (widget.id !== widgetId);
+      });
+
     default:
       return state;
   }

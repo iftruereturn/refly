@@ -77,6 +77,7 @@ class Widget extends Component { // eslint-disable-line react/prefer-stateless-f
     moveWidget: PropTypes.func.isRequired, // eslint-disable-line react/no-unused-prop-types
     openWidgetEdit: PropTypes.func.isRequired,
     closeWidgetEdit: PropTypes.func.isRequired,
+    deleteWidget: PropTypes.func.isRequired,
     children: PropTypes.node.isRequired,
   }
 
@@ -84,11 +85,16 @@ class Widget extends Component { // eslint-disable-line react/prefer-stateless-f
     const { children,
       connectDragSource, connectDropTarget, isDragging,
       id, editing,
-      openWidgetEdit, closeWidgetEdit } = this.props;
+      openWidgetEdit, closeWidgetEdit, deleteWidget } = this.props;
     const classes = `widget ${isDragging ? 'dnd-transparent' : ''}`;
 
     return connectDragSource(connectDropTarget(
       <div className={classes}>
+        <button
+          onClick={() => { deleteWidget(id); }}
+        >
+          [x]
+        </button>
         <button
           onClick={() => { (!editing ? openWidgetEdit : closeWidgetEdit)(id); }}
         >

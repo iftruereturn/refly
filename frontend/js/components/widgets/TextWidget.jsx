@@ -12,11 +12,12 @@ class TextWidget extends Component { // eslint-disable-line react/prefer-statele
     moveWidget: PropTypes.func.isRequired, // eslint-disable-line react/no-unused-prop-types
     openWidgetEdit: PropTypes.func.isRequired,
     closeWidgetEdit: PropTypes.func.isRequired,
+    deleteWidget: PropTypes.func.isRequired,
   }
 
   render() {
     const { text, title, id, index, editing,
-      moveWidget, openWidgetEdit, closeWidgetEdit } = this.props;
+      moveWidget, openWidgetEdit, closeWidgetEdit, deleteWidget } = this.props;
 
     return (
       <Widget
@@ -26,6 +27,7 @@ class TextWidget extends Component { // eslint-disable-line react/prefer-statele
         moveWidget={moveWidget}
         openWidgetEdit={openWidgetEdit}
         closeWidgetEdit={closeWidgetEdit}
+        deleteWidget={deleteWidget}
       >
 
         { !editing ?
