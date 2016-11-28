@@ -13,11 +13,12 @@ class TextWidget extends Component { // eslint-disable-line react/prefer-statele
     openWidgetEdit: PropTypes.func.isRequired,
     closeWidgetEdit: PropTypes.func.isRequired,
     deleteWidget: PropTypes.func.isRequired,
+    saveWidget: PropTypes.func.isRequired,
   }
 
   render() {
     const { text, title, id, index, editing,
-      moveWidget, openWidgetEdit, closeWidgetEdit, deleteWidget } = this.props;
+      moveWidget, openWidgetEdit, closeWidgetEdit, deleteWidget, saveWidget } = this.props;
 
     return (
       <Widget
@@ -28,6 +29,7 @@ class TextWidget extends Component { // eslint-disable-line react/prefer-statele
         openWidgetEdit={openWidgetEdit}
         closeWidgetEdit={closeWidgetEdit}
         deleteWidget={deleteWidget}
+        saveWidget={saveWidget}
       >
 
         { !editing ?
@@ -36,8 +38,18 @@ class TextWidget extends Component { // eslint-disable-line react/prefer-statele
             <p>{text}</p>
           </div> :
           <div>
-            title: <input type="text" />
-            text: <input type="text" />
+            title: <input type="text" ref={(input) => { this.titleInput = input; }} />
+            text: <input type="text" ref={(input) => { this.textInput = input; }} />
+            <button
+              onClick={() => {
+                saveWidget(id, {
+                  title: this.titleInput.value,
+                  text: this.textInput.value,
+                });
+              }}
+            >
+              Save
+            </button>
           </div>
         }
 

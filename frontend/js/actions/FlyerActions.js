@@ -1,26 +1,26 @@
 import * as FlyerActions from '../constants/Flyer';
 
 // temporary variable
-let id = 0;
+let widgetId = 0;
 
 export const addWidget = () => {
-  id += 1;
+  widgetId += 1;
 
   return {
     type: FlyerActions.ADD_WIDGET,
     payload: {
-      id,
+      id: widgetId,
       type: 'TextWidget',
-      title: `New text widget ${id}`,
+      title: `New text widget ${widgetId}`,
       text: 'Sample text',
     },
   };
 };
 
-export const deleteWidget = widgetId => ({
+export const deleteWidget = id => ({
   type: FlyerActions.DELETE_WIDGET,
   payload: {
-    widgetId,
+    id,
   },
 });
 
@@ -32,16 +32,24 @@ export const moveWidget = (dragIndex, hoverIndex) => ({
   },
 });
 
-export const openWidgetEdit = widgetId => ({
+export const openWidgetEdit = id => ({
   type: FlyerActions.OPEN_WIDGET_EDIT,
   payload: {
-    widgetId,
+    id,
   },
 });
 
-export const closeWidgetEdit = widgetId => ({
+export const closeWidgetEdit = id => ({
   type: FlyerActions.CLOSE_WIDGET_EDIT,
   payload: {
-    widgetId,
+    id,
+  },
+});
+
+export const saveWidget = (id, fieldsObj) => ({
+  type: FlyerActions.SAVE_WIDGET,
+  payload: {
+    id,
+    ...fieldsObj,
   },
 });

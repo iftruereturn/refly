@@ -28,9 +28,9 @@ const flyerStack = (state = initialState, action) => {
 
     case flyerActions.OPEN_WIDGET_EDIT:
       return state.map((widget) => {
-        const { widgetId } = payload;
+        const { id } = payload;
 
-        if (widget.id === widgetId) {
+        if (widget.id === id) {
           return {
             ...widget,
             editing: true,
@@ -41,9 +41,9 @@ const flyerStack = (state = initialState, action) => {
 
     case flyerActions.CLOSE_WIDGET_EDIT:
       return state.map((widget) => {
-        const { widgetId } = payload;
+        const { id } = payload;
 
-        if (widget.id === widgetId) {
+        if (widget.id === id) {
           return {
             ...widget,
             editing: false,
@@ -54,9 +54,22 @@ const flyerStack = (state = initialState, action) => {
 
     case flyerActions.DELETE_WIDGET:
       return state.filter((widget) => {
-        const { widgetId } = payload;
+        const { id } = payload;
 
-        return (widget.id !== widgetId);
+        return (widget.id !== id);
+      });
+
+    case flyerActions.SAVE_WIDGET:
+      return state.map((widget) => {
+        const { id } = payload;
+
+        if (widget.id === id) {
+          return {
+            ...widget,
+            ...payload,
+          };
+        }
+        return widget;
       });
 
     default:

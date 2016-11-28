@@ -13,10 +13,11 @@ export default class FlyerEditorComponent extends Component {
     openWidgetEdit: PropTypes.func.isRequired,
     closeWidgetEdit: PropTypes.func.isRequired,
     deleteWidget: PropTypes.func.isRequired,
+    saveWidget: PropTypes.func.isRequired,
   }
 
   render() {
-    const { addWidget, moveWidget, openWidgetEdit, closeWidgetEdit, deleteWidget,
+    const { addWidget, moveWidget, openWidgetEdit, closeWidgetEdit, deleteWidget, saveWidget,
       flyerStack } = this.props;
 
     const flyer = flyerStack.map((widget, index) => {
@@ -34,6 +35,7 @@ export default class FlyerEditorComponent extends Component {
               openWidgetEdit={openWidgetEdit}
               closeWidgetEdit={closeWidgetEdit}
               deleteWidget={deleteWidget}
+              saveWidget={saveWidget}
             />
           );
 
