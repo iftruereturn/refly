@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { findDOMNode } from 'react-dom';
 import { DragSource, DropTarget } from 'react-dnd';
-import DnDTypes from '../../constants/DnD/types';
+import DnDTypes from '../../constants/dnd/types';
 
 const widgetSource = {
   beginDrag(props) {
@@ -89,7 +89,12 @@ class Widget extends Component { // eslint-disable-line react/prefer-stateless-f
     const classes = `widget ${isDragging ? 'dnd-transparent' : ''}`;
 
     return connectDragSource(connectDropTarget(
-      <div className={classes}>
+      <div
+        className={classes}
+        onDoubleClick={() => {
+          (!editing ? openWidgetEdit : closeWidgetEdit)(id);
+        }}
+      >
         <button
           onClick={() => { deleteWidget(id); }}
         >
