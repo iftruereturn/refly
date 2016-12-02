@@ -38,8 +38,16 @@ class TextWidget extends Component { // eslint-disable-line react/prefer-statele
             <p>{text}</p>
           </div> :
           <div>
-            title: <input type="text" ref={(input) => { this.titleInput = input; }} />
-            text: <input type="text" ref={(input) => { this.textInput = input; }} />
+            title: <input
+              type="text"
+              ref={(input) => { this.titleInput = input; }}
+              defaultValue={title}
+            />
+            text: <input
+              type="text"
+              ref={(input) => { this.textInput = input; }}
+              defaultValue={text}
+            />
             <button
               onClick={() => {
                 saveWidget(id, {

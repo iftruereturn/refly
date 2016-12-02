@@ -10,6 +10,9 @@ const widgetSource = {
       index: props.index,
     };
   },
+  canDrag(props) {
+    return !props.editing;
+  },
 };
 
 const widgetTarget = {
@@ -39,12 +42,12 @@ const widgetTarget = {
     // When dragging upwards, only move when the cursor is above 50%
 
     // Dragging downwards
-    if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY) {
+    if (dragIndex < hoverIndex && hoverClientY > hoverMiddleY) {
       return;
     }
 
     // Dragging upwards
-    if (dragIndex > hoverIndex && hoverClientY > hoverMiddleY) {
+    if (dragIndex > hoverIndex && hoverClientY < hoverMiddleY) {
       return;
     }
 
@@ -86,27 +89,30 @@ class Widget extends Component { // eslint-disable-line react/prefer-stateless-f
       connectDragSource, connectDropTarget, isDragging,
       id, editing,
       openWidgetEdit, closeWidgetEdit, deleteWidget } = this.props;
-    const classes = `widget ${isDragging ? 'dnd-transparent' : ''}`;
+    const classes = `widget ${editing ? '' : 'can-drag'} ${isDragging ? 'dnd-transparent' : ''}`;
 
     return connectDragSource(connectDropTarget(
-      <div
-        className={classes}
-        onDoubleClick={() => {
-          (!editing ? openWidgetEdit : closeWidgetEdit)(id);
-        }}
-      >
-        <button
-          onClick={() => { deleteWidget(id); }}
+      (isDragging ?
+        <div className="widget">DRAGGED</div> :
+        <div
+          className={classes}
+          onDoubleClick={() => {
+            (!editing ? openWidgetEdit : closeWidgetEdit)(id);
+          }}
         >
-          [x]
-        </button>
-        <button
-          onClick={() => { (!editing ? openWidgetEdit : closeWidgetEdit)(id); }}
-        >
-          {!editing ? 'Edit' : 'Cancel'}
-        </button>
-        {children}
-      </div>
+          <button
+            onClick={() => { deleteWidget(id); }}
+          >
+            [x]
+          </button>
+          <button
+            onClick={() => { (!editing ? openWidgetEdit : closeWidgetEdit)(id); }}
+          >
+            {!editing ? 'Edit' : 'Cancel'}
+          </button>
+          {children}
+        </div>
+      )
     ));
   }
 }

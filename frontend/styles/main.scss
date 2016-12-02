@@ -17,11 +17,52 @@ html, body, #root {
 }
 
 .widget {
-  background-color: beige;
-  border: 3px solid black;
+  background-color: white;
+  color: #232323;
+  border: 1px solid #777;
+  // border-top: 3px solid #343434;
   width: 400px;
+  min-height: 150px;
 }
 
 .dnd-transparent {
   opacity: 0.4;
+}
+
+.can-drag {
+  cursor: move;
+}
+
+
+.example-enter {
+  opacity: 0.01;
+  transform: scale(0, 0);
+}
+
+.example-enter.example-enter-active {
+  opacity: 1;
+  transform: scale(1, 1);
+  // transition: opacity 300ms ease-in;
+  transition: 200ms ease-in;
+}
+
+.example-leave {
+  opacity: 1;
+  transform: scale(1, 1);
+}
+
+.example-leave.example-leave-active {
+  opacity: 0.01;
+  transform: scale(0, 0);
+  // transition: opacity 300ms ease-in;
+  transition: 200ms ease-in;
+}
+
+.example-appear {
+  opacity: 0.01;
+}
+
+.example-appear.example-appear-active {
+  opacity: 1;
+  transition: opacity .5s ease-in;
 }

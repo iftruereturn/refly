@@ -46,10 +46,14 @@ export const closeWidgetEdit = id => ({
   },
 });
 
-export const saveWidget = (id, fieldsObj) => ({
-  type: FlyerActions.SAVE_WIDGET,
-  payload: {
-    id,
-    ...fieldsObj,
-  },
-});
+export const saveWidget = (id, fieldsObj) => (dispatch) => {
+  dispatch(({
+    type: FlyerActions.SAVE_WIDGET,
+    payload: {
+      id,
+      ...fieldsObj,
+    },
+  }));
+
+  dispatch(closeWidgetEdit(id));
+};

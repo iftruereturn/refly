@@ -1,10 +1,12 @@
 import React, { Component, PropTypes } from 'react';
-import HTML5Backend from 'react-dnd-html5-backend';
+// import HTML5Backend from 'react-dnd-html5-backend';
+import { default as TouchBackend } from 'react-dnd-touch-backend';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import { DragDropContext } from 'react-dnd';
 
 import TextWidget from './widgets/TextWidget';
 
-@DragDropContext(HTML5Backend) // eslint-disable-line new-cap
+@DragDropContext(TouchBackend({ enableMouseEvents: true })) // eslint-disable-line new-cap
 export default class FlyerEditorComponent extends Component {
   static propTypes = {
     flyerStack: PropTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types
@@ -46,7 +48,13 @@ export default class FlyerEditorComponent extends Component {
 
     return (
       <div className="flyer-stack">
-        {flyer}
+        <ReactCSSTransitionGroup
+          transitionName="example"
+          transitionEnterTimeout={500}
+          transitionLeaveTimeout={500}
+        >
+          {flyer}
+        </ReactCSSTransitionGroup>
         <button onClick={() => addWidget()}>Add Widget</button>
       </div>
     );
