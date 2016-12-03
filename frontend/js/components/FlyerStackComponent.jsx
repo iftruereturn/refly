@@ -1,17 +1,14 @@
 import React, { Component, PropTypes } from 'react';
-// import HTML5Backend from 'react-dnd-html5-backend';
-import { default as TouchBackend } from 'react-dnd-touch-backend';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import { DragDropContext } from 'react-dnd';
+import { SortableContainer } from 'react-sortable-hoc';
 
 import TextWidget from './widgets/TextWidget';
 
-@DragDropContext(TouchBackend({ enableMouseEvents: true })) // eslint-disable-line new-cap
-export default class FlyerEditorComponent extends Component {
+@SortableContainer
+class FlyerEditorComponent extends Component {
   static propTypes = {
     flyerStack: PropTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types
-    addWidget: PropTypes.func.isRequired,
-    moveWidget: PropTypes.func.isRequired,
+    // addWidget: PropTypes.func.isRequired,
     openWidgetEdit: PropTypes.func.isRequired,
     closeWidgetEdit: PropTypes.func.isRequired,
     deleteWidget: PropTypes.func.isRequired,
@@ -19,7 +16,7 @@ export default class FlyerEditorComponent extends Component {
   }
 
   render() {
-    const { addWidget, moveWidget, openWidgetEdit, closeWidgetEdit, deleteWidget, saveWidget,
+    const { openWidgetEdit, closeWidgetEdit, deleteWidget, saveWidget,
       flyerStack } = this.props;
 
     const flyer = flyerStack.map((widget, index) => {
@@ -33,7 +30,6 @@ export default class FlyerEditorComponent extends Component {
               id={widget.id}
               editing={widget.editing}
               index={index}
-              moveWidget={moveWidget}
               openWidgetEdit={openWidgetEdit}
               closeWidgetEdit={closeWidgetEdit}
               deleteWidget={deleteWidget}
@@ -55,8 +51,9 @@ export default class FlyerEditorComponent extends Component {
         >
           {flyer}
         </ReactCSSTransitionGroup>
-        <button onClick={() => addWidget()}>Add Widget</button>
       </div>
     );
   }
 }
+
+export default FlyerEditorComponent; // eslint-disable-line new-cap

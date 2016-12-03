@@ -13,7 +13,14 @@ html, body, #root {
 }
 
 .flyer-stack {
+  min-height: 10px;
   margin: auto;
+  transition: 300ms ease-in-out;
+}
+
+.flyer-stack-wrapper {
+  margin: auto;
+  user-select: none;
 }
 
 .widget {
@@ -23,6 +30,7 @@ html, body, #root {
   // border-top: 3px solid #343434;
   width: 400px;
   min-height: 150px;
+  user-select: none;
 }
 
 .dnd-transparent {

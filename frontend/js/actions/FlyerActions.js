@@ -24,11 +24,12 @@ export const deleteWidget = id => ({
   },
 });
 
-export const moveWidget = (dragIndex, hoverIndex) => ({
+// onSortEnd actually
+export const moveWidget = ({ oldIndex, newIndex }) => ({
   type: FlyerActions.MOVE_WIDGET,
   payload: {
-    dragIndex,
-    hoverIndex,
+    oldIndex,
+    newIndex,
   },
 });
 
