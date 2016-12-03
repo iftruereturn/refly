@@ -34,35 +34,33 @@ html, body, #root {
 }
 
 
-.example-enter {
+.widget-transition-enter {
   opacity: 0.01;
   transform: scale(0, 0);
 }
 
-.example-enter.example-enter-active {
+.widget-transition-enter.widget-transition-enter-active {
   opacity: 1;
   transform: scale(1, 1);
-  // transition: opacity 300ms ease-in;
-  transition: 200ms ease-in;
+  transition: 300ms ease-in-out;
 }
 
-.example-leave {
+.widget-transition-leave {
   opacity: 1;
   transform: scale(1, 1);
 }
 
-.example-leave.example-leave-active {
+.widget-transition-leave.widget-transition-leave-active {
   opacity: 0.01;
   transform: scale(0, 0);
-  // transition: opacity 300ms ease-in;
-  transition: 200ms ease-in;
+  transition: 300ms ease-in-out;
 }
 
-.example-appear {
+.widget-transition-appear {
   opacity: 0.01;
 }
 
-.example-appear.example-appear-active {
+.widget-transition-appear.widget-transition-appear-active {
   opacity: 1;
-  transition: opacity .5s ease-in;
+  transition: opacity 300ms ease-in-out;
 }

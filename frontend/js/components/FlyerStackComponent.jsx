@@ -49,9 +49,9 @@ export default class FlyerEditorComponent extends Component {
     return (
       <div className="flyer-stack">
         <ReactCSSTransitionGroup
-          transitionName="example"
-          transitionEnterTimeout={500}
-          transitionLeaveTimeout={500}
+          transitionName="widget-transition"
+          transitionEnterTimeout={300}
+          transitionLeaveTimeout={300}
         >
           {flyer}
         </ReactCSSTransitionGroup>
