@@ -31,6 +31,17 @@ html, body, #root {
   width: 400px;
   min-height: 150px;
   user-select: none;
+
+  .toolkit {
+    visibility: hidden;
+  }
+}
+
+.widget:hover {
+
+  .toolkit {
+    visibility: visible;
+  }
 }
 
 .dnd-transparent {

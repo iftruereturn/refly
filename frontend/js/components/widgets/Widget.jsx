@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { SortableElement } from 'react-sortable-hoc';
+import Toolkit from './Toolkit';
 
 @SortableElement
 class Widget extends Component { // eslint-disable-line react/prefer-stateless-function
@@ -26,16 +27,14 @@ class Widget extends Component { // eslint-disable-line react/prefer-stateless-f
           (!editing ? openWidgetEdit : closeWidgetEdit)(id);
         }}
       >
-        <button
-          onClick={() => { deleteWidget(id); }}
-        >
-          [x]
-        </button>
-        <button
-          onClick={() => { (!editing ? openWidgetEdit : closeWidgetEdit)(id); }}
-        >
-          {!editing ? 'Edit' : 'Cancel'}
-        </button>
+        <Toolkit
+          className={'toolkit'}
+          deleteWidget={deleteWidget}
+          editing={editing}
+          openWidgetEdit={openWidgetEdit}
+          closeWidgetEdit={closeWidgetEdit}
+          id={id}
+        />
         {children}
       </div>
     );
