@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import * as FlyerActions from '../actions/FlyerActions';
 import FlyerStackComponent from '../components/FlyerStackComponent';
+import AddingPanelBottom from '../components/widgets/AddingPanelBottom';
 
 const FlyerStackEditor = props => (
   <div className={'flyer-stack-wrapper'}>
@@ -13,7 +14,7 @@ const FlyerStackEditor = props => (
       lockAxis={'y'}
       helperClass={'dnd-transparent'}
     />
-    <button onClick={props.addWidget}>Add Widget</button>
+    <AddingPanelBottom addWidget={props.addWidget} />
   </div>
 );
 

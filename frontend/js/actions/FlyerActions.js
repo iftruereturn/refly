@@ -3,18 +3,24 @@ import * as FlyerActions from '../constants/Flyer';
 // temporary variable
 let widgetId = 0;
 
-export const addWidget = () => {
+export const addWidget = (type) => {
   widgetId += 1;
 
-  return {
-    type: FlyerActions.ADD_WIDGET,
-    payload: {
-      id: widgetId,
-      type: 'TextWidget',
-      title: `New text widget ${widgetId}`,
-      text: 'Sample text',
-    },
-  };
+  switch (type) {
+    case 'text':
+      return {
+        type: FlyerActions.ADD_WIDGET,
+        payload: {
+          id: widgetId,
+          type: 'TextWidget',
+          title: `New text widget ${widgetId}`,
+          text: 'Sample text',
+        },
+      };
+
+    default:
+      return null;
+  }
 };
 
 export const deleteWidget = id => ({

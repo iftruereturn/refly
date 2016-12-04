@@ -31,32 +31,40 @@ class TextWidget extends Component { // eslint-disable-line react/prefer-statele
         disabled={editing}
       >
 
-        { !editing ?
-          <div>
-            <h2>{title}</h2>
-            <p>{text}</p>
+        {!editing ?
+          <div className={`widget-wrapper ${editing ? 'widget-content-hidden' : ''}`}>
+            <div className="widget-content">
+              <h2>{title}</h2>
+              <p>{text}</p>
+            </div>
           </div> :
-          <div>
-            title: <input
-              type="text"
-              ref={(input) => { this.titleInput = input; }}
-              defaultValue={title}
-            />
-            text: <input
-              type="text"
-              ref={(input) => { this.textInput = input; }}
-              defaultValue={text}
-            />
-            <button
-              onClick={() => {
-                saveWidget(id, {
-                  title: this.titleInput.value,
-                  text: this.textInput.value,
-                });
-              }}
-            >
-              Save
-            </button>
+          <div className={`widget-wrapper ${editing ? '' : 'widget-editor-hidden'}`}>
+            <div className="widget-editor">
+              <div>
+                title: <input
+                  type="text"
+                  ref={(input) => { this.titleInput = input; }}
+                  defaultValue={title}
+                />
+              </div>
+              <div>
+                text: <input
+                  type="text"
+                  ref={(input) => { this.textInput = input; }}
+                  defaultValue={text}
+                />
+              </div>
+              <button
+                onClick={() => {
+                  saveWidget(id, {
+                    title: this.titleInput.value,
+                    text: this.textInput.value,
+                  });
+                }}
+              >
+                Save
+              </button>
+            </div>
           </div>
         }
 

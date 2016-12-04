@@ -34,7 +34,7 @@ html, body, #root {
 }
 
 .dnd-transparent {
-  opacity: 0.4;
+  opacity: 0.7;
 }
 
 .can-drag {
@@ -71,4 +71,29 @@ html, body, #root {
 .widget-transition-appear.widget-transition-appear-active {
   opacity: 1;
   transition: opacity 300ms ease-in-out;
+}
+
+.widget-wrapper {
+  transform: scale(1, 1);
+}
+
+.widget-content {
+
+}
+
+.widget-editor {
+  margin: 1em;
+}
+
+.widget-editor-hidden {
+  transform: scale(0, 0);
+  height: 0;
+  transition: transform 300ms ease-in-out 300ms;
+}
+
+.widget-content-hidden {
+  transform: scale(0, 0);
+  position: absolute;
+  transition: transform 300ms ease-in-out 300ms;
+
 }
