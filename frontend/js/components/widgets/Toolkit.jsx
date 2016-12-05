@@ -12,6 +12,12 @@ const Toolkit = ({ deleteWidget, editing, openWidgetEdit, closeWidgetEdit, id })
     >
       {!editing ? 'Edit' : 'Cancel'}
     </button>
+    <button>
+      Add ^
+    </button>
+    <button>
+      Add v
+    </button>
   </div>
 );
 

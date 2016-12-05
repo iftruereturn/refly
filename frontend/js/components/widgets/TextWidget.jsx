@@ -28,7 +28,6 @@ class TextWidget extends Component { // eslint-disable-line react/prefer-statele
         closeWidgetEdit={closeWidgetEdit}
         deleteWidget={deleteWidget}
         saveWidget={saveWidget}
-        disabled={editing}
       >
 
         {!editing ?

@@ -3,7 +3,7 @@ import * as FlyerActions from '../constants/Flyer';
 // temporary variable
 let widgetId = 0;
 
-export const addWidget = (type) => {
+export const addWidget = (type, position) => {
   widgetId += 1;
 
   switch (type) {
@@ -11,6 +11,7 @@ export const addWidget = (type) => {
       return {
         type: FlyerActions.ADD_WIDGET,
         payload: {
+          position,
           id: widgetId,
           type: 'TextWidget',
           title: `New text widget ${widgetId}`,

@@ -5,7 +5,7 @@ import { SortableContainer } from 'react-sortable-hoc';
 import TextWidget from './widgets/TextWidget';
 
 @SortableContainer
-class FlyerEditorComponent extends Component {
+class FlyerStackComponent extends Component {
   static propTypes = {
     flyerStack: PropTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types
     // addWidget: PropTypes.func.isRequired,
@@ -56,4 +56,4 @@ class FlyerEditorComponent extends Component {
   }
 }
 
-export default FlyerEditorComponent; // eslint-disable-line new-cap
+export default FlyerStackComponent; // eslint-disable-line new-cap

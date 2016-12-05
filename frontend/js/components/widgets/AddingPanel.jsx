@@ -1,3 +1,14 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 
-export default class AddingPanel
+const AddingPanel = ({ addWidget }) => (
+  <div>
+    <button onClick={() => { addWidget('text'); }}>Add text widget</button>
+    <button>Add picture widget</button>
+  </div>
+);
+
+AddingPanel.propTypes = {
+  addWidget: PropTypes.func.isRequired,
+};
+
+export default AddingPanel;

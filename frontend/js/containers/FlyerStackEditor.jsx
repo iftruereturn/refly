@@ -12,6 +12,7 @@ const FlyerStackEditor = props => (
       onSortEnd={props.moveWidget}
       distance={10}
       lockAxis={'y'}
+      lockToContainerEdges
       helperClass={'dnd-transparent'}
     />
     <AddingPanelBottom addWidget={props.addWidget} />
