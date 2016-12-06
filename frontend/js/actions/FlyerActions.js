@@ -44,6 +44,7 @@ export const openWidgetEdit = id => ({
   type: FlyerActions.OPEN_WIDGET_EDIT,
   payload: {
     id,
+    editing: true,
   },
 });
 
@@ -51,6 +52,7 @@ export const closeWidgetEdit = id => ({
   type: FlyerActions.CLOSE_WIDGET_EDIT,
   payload: {
     id,
+    editing: false,
   },
 });
 
@@ -64,4 +66,23 @@ export const saveWidget = (id, fieldsObj) => (dispatch) => {
   }));
 
   dispatch(closeWidgetEdit(id));
+};
+
+export const hideAddingPanel = () => ({
+  type: FlyerActions.HIDE_ADDING_PANEL,
+  payload: {
+    isAddingPanelHidden: true,
+  },
+});
+
+export const showAddingPanel = position => (dispatch) => {
+  dispatch(hideAddingPanel());
+
+  dispatch({
+    type: FlyerActions.SHOW_ADDING_PANEL,
+    payload: {
+      addingPanelPosition: position,
+      isAddingPanelHidden: false,
+    },
+  });
 };

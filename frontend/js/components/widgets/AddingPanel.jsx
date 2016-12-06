@@ -1,14 +1,23 @@
 import React, { PropTypes } from 'react';
 
-const AddingPanel = ({ addWidget }) => (
-  <div>
-    <button onClick={() => { addWidget('text'); }}>Add text widget</button>
+const AddingPanel = ({
+  addWidget,
+  hideAddingPanel,
+  isAddingPanelHidden,
+  addingPanelPosition,
+}) => (
+  <div className={isAddingPanelHidden ? 'adding-panel-hidden' : ''}>
+    <button onClick={() => { addWidget('text', addingPanelPosition); }}>Add text widget</button>
     <button>Add picture widget</button>
+    <button onClick={() => { hideAddingPanel(); }}>[x]</button>
   </div>
 );
 
 AddingPanel.propTypes = {
   addWidget: PropTypes.func.isRequired,
+  hideAddingPanel: PropTypes.func.isRequired,
+  isAddingPanelHidden: PropTypes.bool.isRequired,
+  addingPanelPosition: PropTypes.number.isRequired,
 };
 
 export default AddingPanel;

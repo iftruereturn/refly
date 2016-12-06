@@ -20,5 +20,5 @@ export const CLOSE_WIDGET_EDIT = 'CLOSE_WIDGET_EDIT';
 export const SAVE_WIDGET = 'SAVE_WIDGET';
 
 // PANEL
-export const SHOW_PANEL = 'SHOW_PANEL';
-export const HIDE_PANEL = 'HIDE_PANEL';
+export const SHOW_ADDING_PANEL = 'SHOW_ADDING_PANEL';
+export const HIDE_ADDING_PANEL = 'HIDE_ADDING_PANEL';

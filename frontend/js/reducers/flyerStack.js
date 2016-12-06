@@ -7,25 +7,38 @@ const flyerStack = (state = initialState, action) => {
   const { type, payload } = action;
 
   switch (type) {
-    case flyerActions.ADD_WIDGET:
-      return [
-        ...state,
+    case flyerActions.ADD_WIDGET: {
+      const { position } = payload;
+
+      if (position === undefined) {
+        return [
+          ...state,
+          {
+            ...payload,
+          },
+        ];
+      }
+
+      return [].concat(
+        state.slice(0, position),
         {
           ...payload,
         },
-      ];
+        state.slice(position),
+      );
+    }
 
     case flyerActions.MOVE_WIDGET:
       return arrayMove(state, payload.oldIndex, payload.newIndex);
 
     case flyerActions.OPEN_WIDGET_EDIT:
       return state.map((widget) => {
-        const { id } = payload;
+        const { id, editing } = payload;
 
         if (widget.id === id) {
           return {
             ...widget,
-            editing: true,
+            editing,
           };
         }
         return widget;
@@ -33,12 +46,12 @@ const flyerStack = (state = initialState, action) => {
 
     case flyerActions.CLOSE_WIDGET_EDIT:
       return state.map((widget) => {
-        const { id } = payload;
+        const { id, editing } = payload;
 
         if (widget.id === id) {
           return {
             ...widget,
-            editing: false,
+            editing,
           };
         }
         return widget;

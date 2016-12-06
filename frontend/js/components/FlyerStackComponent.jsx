@@ -3,20 +3,27 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import { SortableContainer } from 'react-sortable-hoc';
 
 import TextWidget from './widgets/TextWidget';
+import AddingPanel from './widgets/AddingPanel';
 
 @SortableContainer
 class FlyerStackComponent extends Component {
   static propTypes = {
     flyerStack: PropTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types
-    // addWidget: PropTypes.func.isRequired,
+    addWidget: PropTypes.func.isRequired,
     openWidgetEdit: PropTypes.func.isRequired,
     closeWidgetEdit: PropTypes.func.isRequired,
     deleteWidget: PropTypes.func.isRequired,
     saveWidget: PropTypes.func.isRequired,
+    addingPanelPosition: PropTypes.number.isRequired,
+    isAddingPanelHidden: PropTypes.bool.isRequired,
+    showAddingPanel: PropTypes.func.isRequired,
+    hideAddingPanel: PropTypes.func.isRequired,
   }
 
   render() {
-    const { openWidgetEdit, closeWidgetEdit, deleteWidget, saveWidget,
+    const { addingPanelPosition, isAddingPanelHidden,
+      openWidgetEdit, closeWidgetEdit, deleteWidget, saveWidget, addWidget,
+      showAddingPanel, hideAddingPanel,
       flyerStack } = this.props;
 
     const flyer = flyerStack.map((widget, index) => {
@@ -34,6 +41,7 @@ class FlyerStackComponent extends Component {
               closeWidgetEdit={closeWidgetEdit}
               deleteWidget={deleteWidget}
               saveWidget={saveWidget}
+              showAddingPanel={showAddingPanel}
             />
           );
 
@@ -41,6 +49,18 @@ class FlyerStackComponent extends Component {
           return null;
       }
     });
+
+    flyer.splice(
+      addingPanelPosition,
+      0,
+      <AddingPanel
+        key={'AddingPanel'}
+        isAddingPanelHidden={isAddingPanelHidden}
+        addingPanelPosition={addingPanelPosition}
+        addWidget={addWidget}
+        hideAddingPanel={hideAddingPanel}
+      />
+    );
 
     return (
       <div className="flyer-stack">
