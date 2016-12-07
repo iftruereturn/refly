@@ -6,7 +6,7 @@ const AddingPanel = ({
   isAddingPanelHidden,
   addingPanelPosition,
 }) => (
-  <div className={isAddingPanelHidden ? 'adding-panel-hidden' : ''}>
+  <div className={`adding-panel ${isAddingPanelHidden ? 'adding-panel-hidden' : ''}`}>
     <button onClick={() => { addWidget('text', addingPanelPosition); }}>Add text widget</button>
     <button>Add picture widget</button>
     <button onClick={() => { hideAddingPanel(); }}>[x]</button>

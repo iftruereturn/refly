@@ -1,14 +1,35 @@
 import * as FlyerActions from '../constants/Flyer';
 
-// temporary variable
-let widgetId = 0;
 
-export const addWidget = (type, position) => {
-  widgetId += 1;
+let widgetId = 0; // temporary variable
+
+export const hideAddingPanel = () => ({
+  type: FlyerActions.HIDE_ADDING_PANEL,
+  payload: {
+    isAddingPanelHidden: true,
+  },
+});
+
+export const showAddingPanel = position => (dispatch) => {
+  dispatch(hideAddingPanel());
+
+  dispatch({
+    type: FlyerActions.SHOW_ADDING_PANEL,
+    payload: {
+      addingPanelPosition: position,
+      isAddingPanelHidden: false,
+    },
+  });
+};
+
+export const addWidget = (type, position) => (dispatch) => {
+  dispatch(hideAddingPanel());
+
+  widgetId += 1; // temporary variable
 
   switch (type) {
     case 'text':
-      return {
+      dispatch({
         type: FlyerActions.ADD_WIDGET,
         payload: {
           position,
@@ -17,10 +38,11 @@ export const addWidget = (type, position) => {
           title: `New text widget ${widgetId}`,
           text: 'Sample text',
         },
-      };
+      });
+      return;
 
     default:
-      return null;
+      return;
   }
 };
 
@@ -66,23 +88,4 @@ export const saveWidget = (id, fieldsObj) => (dispatch) => {
   }));
 
   dispatch(closeWidgetEdit(id));
-};
-
-export const hideAddingPanel = () => ({
-  type: FlyerActions.HIDE_ADDING_PANEL,
-  payload: {
-    isAddingPanelHidden: true,
-  },
-});
-
-export const showAddingPanel = position => (dispatch) => {
-  dispatch(hideAddingPanel());
-
-  dispatch({
-    type: FlyerActions.SHOW_ADDING_PANEL,
-    payload: {
-      addingPanelPosition: position,
-      isAddingPanelHidden: false,
-    },
-  });
 };
