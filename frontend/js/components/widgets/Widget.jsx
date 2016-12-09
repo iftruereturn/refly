@@ -13,13 +13,15 @@ class Widget extends Component { // eslint-disable-line react/prefer-stateless-f
     deleteWidget: PropTypes.func.isRequired,
     showAddingPanel: PropTypes.func.isRequired,
     children: PropTypes.node.isRequired,
+    styleClasses: PropTypes.string,
   }
 
   render() {
     const { children,
+      styleClasses,
       id, editing, index,
       openWidgetEdit, closeWidgetEdit, deleteWidget, showAddingPanel } = this.props;
-    const classes = `widget ${editing ? '' : 'can-drag'}`;
+    const classes = `widget ${editing ? '' : 'can-drag'} ${styleClasses}`;
 
     return (
       <div

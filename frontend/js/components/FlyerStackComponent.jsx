@@ -3,6 +3,8 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import { SortableContainer } from 'react-sortable-hoc';
 
 import TextWidget from './widgets/TextWidget';
+import ImageWidget from './widgets/ImageWidget';
+
 import AddingPanel from './widgets/AddingPanel';
 
 @SortableContainer
@@ -34,6 +36,23 @@ class FlyerStackComponent extends Component {
               key={widget.id}
               title={widget.title}
               text={widget.text}
+              id={widget.id}
+              editing={widget.editing}
+              index={index}
+              openWidgetEdit={openWidgetEdit}
+              closeWidgetEdit={closeWidgetEdit}
+              deleteWidget={deleteWidget}
+              saveWidget={saveWidget}
+              showAddingPanel={showAddingPanel}
+            />
+          );
+
+        case 'ImageWidget':
+          return (
+            <ImageWidget
+              key={widget.id}
+              title={widget.title}
+              image={widget.image}
               id={widget.id}
               editing={widget.editing}
               index={index}

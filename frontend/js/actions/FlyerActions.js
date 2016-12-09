@@ -41,6 +41,19 @@ export const addWidget = (type, position) => (dispatch) => {
       });
       return;
 
+    case 'picture':
+      dispatch({
+        type: FlyerActions.ADD_WIDGET,
+        payload: {
+          position,
+          id: widgetId,
+          type: 'ImageWidget',
+          title: `New image widget ${widgetId}`,
+          image: 'Random image',
+        },
+      });
+      return;
+
     default:
       return;
   }

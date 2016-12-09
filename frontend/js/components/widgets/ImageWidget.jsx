@@ -2,12 +2,12 @@ import React, { Component, PropTypes } from 'react';
 import Widget from './Widget';
 
 
-class TextWidget extends Component { // eslint-disable-line react/prefer-stateless-function
+class ImageWidget extends Component { // eslint-disable-line react/prefer-stateless-function
   static propTypes = {
     id: PropTypes.number.isRequired,
     index: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
-    text: PropTypes.string.isRequired,
+    image: PropTypes.string.isRequired,
     editing: PropTypes.bool,
     openWidgetEdit: PropTypes.func.isRequired,
     closeWidgetEdit: PropTypes.func.isRequired,
@@ -17,7 +17,7 @@ class TextWidget extends Component { // eslint-disable-line react/prefer-statele
   }
 
   render() {
-    const { text, title, id, index, editing,
+    const { image, title, id, index, editing,
       openWidgetEdit, closeWidgetEdit, deleteWidget, saveWidget, showAddingPanel } = this.props;
 
     return (
@@ -30,14 +30,14 @@ class TextWidget extends Component { // eslint-disable-line react/prefer-statele
         deleteWidget={deleteWidget}
         saveWidget={saveWidget}
         showAddingPanel={showAddingPanel}
-        styleClasses={'text-widget'}
+        styleClasses={'image-widget'}
       >
 
         {!editing ?
           <div className={`widget-wrapper ${editing ? 'widget-content-hidden' : ''}`}>
             <div className="widget-content">
               <h2>{title}</h2>
-              <p>{text}</p>
+              <p>{image}</p>
             </div>
           </div> :
           <div className={`widget-wrapper ${editing ? '' : 'widget-editor-hidden'}`}>
@@ -50,17 +50,17 @@ class TextWidget extends Component { // eslint-disable-line react/prefer-statele
                 />
               </div>
               <div>
-                text: <input
+                image: <input
                   type="text"
-                  ref={(input) => { this.textInput = input; }}
-                  defaultValue={text}
+                  ref={(input) => { this.imageInput = input; }}
+                  defaultValue={image}
                 />
               </div>
               <button
                 onClick={() => {
                   saveWidget(id, {
                     title: this.titleInput.value,
-                    text: this.textInput.value,
+                    image: this.imageInput.value,
                   });
                 }}
               >
@@ -75,5 +75,5 @@ class TextWidget extends Component { // eslint-disable-line react/prefer-statele
   }
 }
 
-export default TextWidget;
+export default ImageWidget;
 

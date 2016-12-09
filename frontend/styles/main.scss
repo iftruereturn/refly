@@ -25,8 +25,10 @@ html, body, #root {
 
 .widget {
   background-color: white;
-  color: #232323;
-  border: 1px solid #777;
+  color: white;
+  font-family: monospace;
+  // border: 1px solid white;
+  margin: none;
   // border-top: 3px solid #343434;
   width: 400px;
   min-height: 150px;
@@ -116,4 +118,25 @@ html, body, #root {
 
 .adding-panel-hidden {
   display: none;
+}
+
+
+.text-widget {
+  background-color: #2196F3;
+  border-bottom: 1px solid #2196F3;
+}
+
+.image-widget {
+  background-color: #4CAF50;
+  border-bottom: 1px solid #4CAF50;
+}
+
+.video-widget {
+  background-color: #FFC107;
+  border-bottom: 1px solid #FFC107;
+}
+
+.header-widget {
+  background-color: #F44336;
+  border-bottom: 1px solid #F44336;
 }
