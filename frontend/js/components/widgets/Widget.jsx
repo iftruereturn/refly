@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { SortableElement } from 'react-sortable-hoc';
-import Toolkit from './Toolkit';
+import Toolkit from '../tools/Toolkit';
 
 @SortableElement
 class Widget extends Component { // eslint-disable-line react/prefer-stateless-function

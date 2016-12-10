@@ -54,6 +54,19 @@ export const addWidget = (type, position) => (dispatch) => {
       });
       return;
 
+    case 'header':
+      dispatch({
+        type: FlyerActions.ADD_WIDGET,
+        payload: {
+          position,
+          id: widgetId,
+          type: 'HeaderWidget',
+          title: `New header widget ${widgetId}`,
+          text: 'Sample text',
+        },
+      });
+      return;
+
     default:
       return;
   }

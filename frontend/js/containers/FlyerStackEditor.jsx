@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import * as FlyerActions from '../actions/FlyerActions';
 import FlyerStackComponent from '../components/FlyerStackComponent';
-import AddingPanelBottom from '../components/widgets/AddingPanelBottom';
+import AddingPanelBottom from '../components/tools/AddingPanelBottom';
 
 const FlyerStackEditor = props => (
   <div className={'flyer-stack-wrapper'}>
@@ -15,13 +15,18 @@ const FlyerStackEditor = props => (
       lockToContainerEdges
       helperClass={'dnd-transparent'}
     />
-    <AddingPanelBottom addWidget={props.addWidget} />
+    {
+      props.flyerStack.length > 0 ?
+        null :
+        <AddingPanelBottom addWidget={props.addWidget} />
+    }
   </div>
 );
 
 FlyerStackEditor.propTypes = {
   moveWidget: PropTypes.func.isRequired,
   addWidget: PropTypes.func.isRequired,
+  flyerStack: PropTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types
 };
 
 const mapStateToProps = state => (
