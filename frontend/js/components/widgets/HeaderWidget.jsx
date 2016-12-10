@@ -38,7 +38,7 @@ class HeaderWidget extends Component {
           <div className={`widget-wrapper ${editing ? 'widget-content-hidden' : ''}`}>
             <div className="widget-content">
               <h1>{title}</h1>
-              <p>{text}</p>
+              { text ? <p>{text}</p> : null }
             </div>
           </div> :
           <div className={`widget-wrapper ${editing ? '' : 'widget-editor-hidden'}`}>

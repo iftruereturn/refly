@@ -41,7 +41,7 @@ export const addWidget = (type, position) => (dispatch) => {
       });
       return;
 
-    case 'picture':
+    case 'image':
       dispatch({
         type: FlyerActions.ADD_WIDGET,
         payload: {
@@ -63,6 +63,19 @@ export const addWidget = (type, position) => (dispatch) => {
           type: 'HeaderWidget',
           title: `New header widget ${widgetId}`,
           text: 'Sample text',
+        },
+      });
+      return;
+
+    case 'video':
+      dispatch({
+        type: FlyerActions.ADD_WIDGET,
+        payload: {
+          position,
+          id: widgetId,
+          type: 'VideoWidget',
+          title: `New video widget ${widgetId}`,
+          videoUrl: '',
         },
       });
       return;

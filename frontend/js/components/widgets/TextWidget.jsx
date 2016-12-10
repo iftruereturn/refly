@@ -36,7 +36,7 @@ class TextWidget extends Component { // eslint-disable-line react/prefer-statele
         {!editing ?
           <div className={`widget-wrapper ${editing ? 'widget-content-hidden' : ''}`}>
             <div className="widget-content">
-              <h2>{title}</h2>
+              { title ? <h2>{title}</h2> : null }
               <p>{text}</p>
             </div>
           </div> :

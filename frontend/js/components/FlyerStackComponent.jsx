@@ -5,6 +5,7 @@ import { SortableContainer } from 'react-sortable-hoc';
 import TextWidget from './widgets/TextWidget';
 import ImageWidget from './widgets/ImageWidget';
 import HeaderWidget from './widgets/HeaderWidget';
+import VideoWidget from './widgets/VideoWidget';
 
 import AddingPanel from './tools/AddingPanel';
 
@@ -71,6 +72,23 @@ class FlyerStackComponent extends Component {
               key={widget.id}
               title={widget.title}
               text={widget.text}
+              id={widget.id}
+              editing={widget.editing}
+              index={index}
+              openWidgetEdit={openWidgetEdit}
+              closeWidgetEdit={closeWidgetEdit}
+              deleteWidget={deleteWidget}
+              saveWidget={saveWidget}
+              showAddingPanel={showAddingPanel}
+            />
+          );
+
+        case 'VideoWidget':
+          return (
+            <VideoWidget
+              key={widget.id}
+              title={widget.title}
+              videoUrl={widget.videoUrl}
               id={widget.id}
               editing={widget.editing}
               index={index}

@@ -2,12 +2,13 @@ import React, { Component, PropTypes } from 'react';
 import Widget from './Widget';
 
 
-class ImageWidget extends Component { // eslint-disable-line react/prefer-stateless-function
+// eslint-disable-next-line react/prefer-stateless-function
+class VideoWidget extends Component {
   static propTypes = {
     id: PropTypes.number.isRequired,
     index: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired,
+    videoUrl: PropTypes.string.isRequired,
     editing: PropTypes.bool,
     openWidgetEdit: PropTypes.func.isRequired,
     closeWidgetEdit: PropTypes.func.isRequired,
@@ -17,7 +18,7 @@ class ImageWidget extends Component { // eslint-disable-line react/prefer-statel
   }
 
   render() {
-    const { image, title, id, index, editing,
+    const { videoUrl, title, id, index, editing,
       openWidgetEdit, closeWidgetEdit, deleteWidget, saveWidget, showAddingPanel } = this.props;
 
     return (
@@ -30,14 +31,14 @@ class ImageWidget extends Component { // eslint-disable-line react/prefer-statel
         deleteWidget={deleteWidget}
         saveWidget={saveWidget}
         showAddingPanel={showAddingPanel}
-        styleClasses={'image-widget'}
+        styleClasses={'video-widget'}
       >
 
         {!editing ?
           <div className={`widget-wrapper ${editing ? 'widget-content-hidden' : ''}`}>
             <div className="widget-content">
               { title ? <h2>{title}</h2> : null }
-              <p>{image}</p>
+              <p>{videoUrl}</p>
             </div>
           </div> :
           <div className={`widget-wrapper ${editing ? '' : 'widget-editor-hidden'}`}>
@@ -50,17 +51,17 @@ class ImageWidget extends Component { // eslint-disable-line react/prefer-statel
                 />
               </div>
               <div>
-                image: <input
+                videoUrl: <input
                   type="text"
-                  ref={(input) => { this.imageInput = input; }}
-                  defaultValue={image}
+                  ref={(input) => { this.videoUrlInput = input; }}
+                  defaultValue={videoUrl}
                 />
               </div>
               <button
                 onClick={() => {
                   saveWidget(id, {
                     title: this.titleInput.value,
-                    image: this.imageInput.value,
+                    videoUrl: this.videoUrlInput.value,
                   });
                 }}
               >
@@ -75,5 +76,5 @@ class ImageWidget extends Component { // eslint-disable-line react/prefer-statel
   }
 }
 
-export default ImageWidget;
+export default VideoWidget;
 
