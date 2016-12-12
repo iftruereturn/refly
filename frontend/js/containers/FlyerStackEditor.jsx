@@ -2,8 +2,10 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 
 import * as FlyerActions from '../actions/FlyerActions';
+
 import FlyerStackComponent from '../components/FlyerStackComponent';
 import AddingPanelBottom from '../components/tools/AddingPanelBottom';
+import SidePanel from '../components/editor/SidePanel';
 
 const FlyerStackEditor = props => (
   <div className={'flyer-stack-wrapper'}>
@@ -20,18 +22,22 @@ const FlyerStackEditor = props => (
         null :
         <AddingPanelBottom addWidget={props.addWidget} />
     }
+    <SidePanel {...props.flyerPossibleSettings} />
   </div>
 );
 
 FlyerStackEditor.propTypes = {
   moveWidget: PropTypes.func.isRequired,
   addWidget: PropTypes.func.isRequired,
-  flyerStack: PropTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types
+  flyerStack: PropTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types,
+  // eslint-disable-next-line react/forbid-prop-types,
+  flyerPossibleSettings: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = state => (
   { ...state.flyerInfo,
-    flyerStack: state.flyerStack }
+    flyerStack: state.flyerStack,
+    flyerPossibleSettings: state.flyerPossibleSettings }
 );
 
 // const mapDispatchToProps = (dispatch) => {

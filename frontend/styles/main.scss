@@ -30,7 +30,7 @@ html, body, #root {
   // border: 1px solid white;
   margin: none;
   // border-top: 3px solid #343434;
-  width: 400px;
+  min-width: 600px;
   min-height: 150px;
   user-select: none;
 
@@ -112,7 +112,7 @@ html, body, #root {
 }
 
 .adding-panel {
-  width: 400px;
+  min-width: 600px;
 }
 
 
