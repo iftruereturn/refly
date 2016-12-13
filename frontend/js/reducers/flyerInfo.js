@@ -7,6 +7,10 @@ const initialState = {
   updatedAt: '',
   addingPanelPosition: 0,
   isAddingPanelHidden: true,
+  background: '',
+  color: '',
+  font: '',
+  theme: '',
 };
 
 const flyerInfo = (state = initialState, action) => {
@@ -24,6 +28,30 @@ const flyerInfo = (state = initialState, action) => {
       return {
         ...state,
         isAddingPanelHidden: payload.isAddingPanelHidden,
+      };
+
+    case flyerActions.CHANGE_FLYER_BACKGROUND:
+      return {
+        ...state,
+        background: payload.background,
+      };
+
+    case flyerActions.CHANGE_FLYER_COLOR:
+      return {
+        ...state,
+        color: payload.color,
+      };
+
+    case flyerActions.CHANGE_FLYER_FONT:
+      return {
+        ...state,
+        font: payload.font,
+      };
+
+    case flyerActions.CHANGE_FLYER_THEME:
+      return {
+        ...state,
+        theme: payload.theme,
       };
 
     default:

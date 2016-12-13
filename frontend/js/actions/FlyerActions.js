@@ -2,6 +2,7 @@ import * as FlyerActions from '../constants/Flyer';
 
 
 let widgetId = 0; // temporary variable
+// Should I generate flyer\widget IDs on the server or on the client?
 
 export const hideAddingPanel = () => ({
   type: FlyerActions.HIDE_ADDING_PANEL,
@@ -128,3 +129,33 @@ export const saveWidget = (id, fieldsObj) => (dispatch) => {
 
   dispatch(closeWidgetEdit(id));
 };
+
+// Flyer settings
+
+export const changeFlyerBackground = background => ({
+  type: FlyerActions.CHANGE_FLYER_BACKGROUND,
+  payload: {
+    background,
+  },
+});
+
+export const changeFlyerColor = color => ({
+  type: FlyerActions.CHANGE_FLYER_COLOR,
+  payload: {
+    color,
+  },
+});
+
+export const changeFlyerFont = font => ({
+  type: FlyerActions.CHANGE_FLYER_FONT,
+  payload: {
+    font,
+  },
+});
+
+export const changeFlyerTheme = theme => ({
+  type: FlyerActions.CHANGE_FLYER_THEME,
+  payload: {
+    theme,
+  },
+});
