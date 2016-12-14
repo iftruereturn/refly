@@ -13,22 +13,32 @@ import AddingPanel from './tools/AddingPanel';
 class FlyerStackComponent extends Component {
   static propTypes = {
     flyerStack: PropTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types
+
+    flyerInfo: PropTypes.shape({
+      // background: PropTypes.string,
+      // font: PropTypes.string,
+      // theme: PropTypes.string,
+      color: PropTypes.string,
+      addingPanelPosition: PropTypes.number.isRequired,
+      isAddingPanelHidden: PropTypes.bool.isRequired,
+    }),
+
     addWidget: PropTypes.func.isRequired,
     openWidgetEdit: PropTypes.func.isRequired,
     closeWidgetEdit: PropTypes.func.isRequired,
     deleteWidget: PropTypes.func.isRequired,
     saveWidget: PropTypes.func.isRequired,
-    addingPanelPosition: PropTypes.number.isRequired,
-    isAddingPanelHidden: PropTypes.bool.isRequired,
+
     showAddingPanel: PropTypes.func.isRequired,
     hideAddingPanel: PropTypes.func.isRequired,
   }
 
   render() {
-    const { addingPanelPosition, isAddingPanelHidden,
-      openWidgetEdit, closeWidgetEdit, deleteWidget, saveWidget, addWidget,
+    const { openWidgetEdit, closeWidgetEdit, deleteWidget, saveWidget, addWidget,
       showAddingPanel, hideAddingPanel,
       flyerStack } = this.props;
+
+    const { addingPanelPosition, isAddingPanelHidden } = this.props.flyerInfo;
 
     const flyer = flyerStack.map((widget, index) => {
       switch (widget.type) {
@@ -117,8 +127,10 @@ class FlyerStackComponent extends Component {
       />
     );
 
+    const classNamesFlyer = `flyer-stack ${this.props.flyerInfo.color}`;
+
     return (
-      <div className="flyer-stack">
+      <div className={classNamesFlyer}>
         <ReactCSSTransitionGroup
           transitionName="widget-transition"
           transitionEnterTimeout={300}

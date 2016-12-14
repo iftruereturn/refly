@@ -22,7 +22,10 @@ const FlyerStackEditor = props => (
         null :
         <AddingPanelBottom addWidget={props.addWidget} />
     }
-    <SidePanel {...props.flyerPossibleSettings} />
+    <SidePanel
+      {...props.flyerPossibleSettings}
+      {...props}
+    />
   </div>
 );
 
@@ -35,7 +38,7 @@ FlyerStackEditor.propTypes = {
 };
 
 const mapStateToProps = state => (
-  { ...state.flyerInfo,
+  { flyerInfo: state.flyerInfo,
     flyerStack: state.flyerStack,
     flyerPossibleSettings: state.flyerPossibleSettings }
 );

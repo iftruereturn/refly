@@ -6,20 +6,44 @@ const initialState = {
   ],
 
   backgrounds: [
-    { black: '#000000' },
-    { white: '#FFFFFF' },
+    {
+      name: 'black',
+      value: '#000000',
+    },
+    {
+      name: 'white',
+      value: '#FFFFFF',
+    },
   ],
 
   colors: [
-    { black: '#000000' },
-    { white: '#FFFFFF' },
-    { gray: '#AAAAAA' },
+    {
+      name: 'black',
+      value: 'black',
+    },
+    {
+      name: 'white',
+      value: 'white',
+    },
+    {
+      name: 'gray',
+      value: 'gray',
+    },
   ],
 
   fonts: [
-    { 'Sans Serif': 'sansSerif' },
-    { Serif: 'serif' },
-    { Monospace: 'monospace' },
+    {
+      name: 'Sans Serif',
+      value: 'sansSerif',
+    },
+    {
+      name: 'Serif',
+      value: 'serif',
+    },
+    {
+      name: 'Monospace',
+      value: 'monospace',
+    },
   ],
 
   flyerStackSize: 5,
