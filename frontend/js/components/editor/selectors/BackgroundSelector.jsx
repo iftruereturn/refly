@@ -2,7 +2,15 @@ import React, { PropTypes } from 'react';
 
 const BackgroundSelector = ({ backgrounds, changeFlyerBackground }) => (
   <div>
-    BackgroundSelector
+    { backgrounds.map((background, i) => (
+      <button
+        key={i}
+        className="selector-item"
+        onClick={() => { changeFlyerBackground(background.value); }}
+      >
+        {background.name}
+      </button>
+    )) }
   </div>
 );
 

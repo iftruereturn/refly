@@ -2,7 +2,15 @@ import React, { PropTypes } from 'react';
 
 const ThemeSelector = ({ themes, changeFlyerTheme }) => (
   <div>
-    ThemeSelector
+    { themes.map((theme, i) => (
+      <button
+        key={i}
+        className="selector-item"
+        onClick={() => { changeFlyerTheme(theme.value); }}
+      >
+        {theme.name}
+      </button>
+    )) }
   </div>
 );
 
