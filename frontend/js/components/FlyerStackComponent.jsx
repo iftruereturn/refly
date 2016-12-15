@@ -127,7 +127,7 @@ class FlyerStackComponent extends Component {
       />
     );
 
-    const classNamesFlyer = `flyer-stack ${this.props.flyerInfo.color}`;
+    const classNamesFlyer = `flyer-stack flyer-color-setting-${this.props.flyerInfo.color}`;
 
     return (
       <div className={classNamesFlyer}>

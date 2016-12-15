@@ -34,6 +34,9 @@ html, body, #root {
   min-height: 150px;
   user-select: none;
 
+  // experimental
+  will-change: transition;
+
   .toolkit {
     visibility: hidden;
   }
@@ -96,6 +99,7 @@ html, body, #root {
 
 .widget-editor {
   margin: 1em;
+  color: #FFFFFF;
 }
 
 .widget-editor-hidden {
