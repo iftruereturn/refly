@@ -26,7 +26,7 @@ html, body, #root {
 .widget {
   background-color: white;
   // color: white;
-  font-family: monospace;
+  // font-family: monospace;
   // border: 1px solid white;
   margin: none;
   // border-top: 3px solid #343434;
@@ -156,6 +156,10 @@ html, body, #root {
 }
 
 
-@import 'flyer-settings-styles/colors.scss'
+@import 'flyer-settings-styles/colors.scss';
+@import 'flyer-settings-styles/fonts.scss';
+@import 'flyer-settings-styles/backgrounds.scss';
+@import 'flyer-settings-styles/themes.scss';
+
 
 

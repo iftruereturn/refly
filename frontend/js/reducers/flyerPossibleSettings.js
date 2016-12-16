@@ -2,17 +2,24 @@
 
 const initialState = {
   themes: [
-    'default',
+    {
+      name: 'default',
+      value: 'default',
+    },
+    {
+      name: 'other',
+      value: 'other',
+    },
   ],
 
   backgrounds: [
     {
       name: 'black',
-      value: '#000000',
+      value: 'bg-black',
     },
     {
       name: 'white',
-      value: '#FFFFFF',
+      value: 'bg-white',
     },
   ],
 
@@ -34,7 +41,7 @@ const initialState = {
   fonts: [
     {
       name: 'Sans Serif',
-      value: 'sansSerif',
+      value: 'sans-serif',
     },
     {
       name: 'Serif',

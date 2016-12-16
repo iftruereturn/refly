@@ -7,10 +7,10 @@ const initialState = {
   updatedAt: '',
   addingPanelPosition: 0,
   isAddingPanelHidden: true,
-  background: '',
-  color: '',
-  font: '',
-  theme: '',
+  background: 'bg-black',
+  color: 'black',
+  font: 'monospace',
+  theme: 'default',
 };
 
 const flyerInfo = (state = initialState, action) => {

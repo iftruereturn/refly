@@ -27,6 +27,7 @@ class ColorSelector extends Component {
 
     return (
       <div>
+        Color:
         { colors.map((color, i) => (
           <button
             key={i}

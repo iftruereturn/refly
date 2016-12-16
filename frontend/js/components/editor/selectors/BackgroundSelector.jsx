@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 
 const BackgroundSelector = ({ backgrounds, changeFlyerBackground }) => (
   <div>
+    Background:
     { backgrounds.map((background, i) => (
       <button
         key={i}

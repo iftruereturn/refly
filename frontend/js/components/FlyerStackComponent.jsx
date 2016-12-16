@@ -15,9 +15,9 @@ class FlyerStackComponent extends Component {
     flyerStack: PropTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types
 
     flyerInfo: PropTypes.shape({
-      // background: PropTypes.string,
-      // font: PropTypes.string,
-      // theme: PropTypes.string,
+      background: PropTypes.string,
+      font: PropTypes.string,
+      theme: PropTypes.string,
       color: PropTypes.string,
       addingPanelPosition: PropTypes.number.isRequired,
       isAddingPanelHidden: PropTypes.bool.isRequired,
@@ -127,7 +127,10 @@ class FlyerStackComponent extends Component {
       />
     );
 
-    const classNamesFlyer = `flyer-stack flyer-color-setting-${this.props.flyerInfo.color}`;
+    const classNamesFlyer = `flyer-stack flyer-color-setting-${this.props.flyerInfo.color}` +
+      ` flyer-font-setting-${this.props.flyerInfo.font}` +
+      ` flyer-theme-setting-${this.props.flyerInfo.theme}` +
+      ` flyer-background-setting-${this.props.flyerInfo.background}`;
 
     return (
       <div className={classNamesFlyer}>

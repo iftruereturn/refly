@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 
 const FontSelector = ({ fonts, changeFlyerFont }) => (
   <div>
+    Font:
     { fonts.map((font, i) => (
       <button
         key={i}

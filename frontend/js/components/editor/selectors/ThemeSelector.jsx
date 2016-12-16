@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 
 const ThemeSelector = ({ themes, changeFlyerTheme }) => (
   <div>
+    Theme:
     { themes.map((theme, i) => (
       <button
         key={i}
