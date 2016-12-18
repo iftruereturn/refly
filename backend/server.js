@@ -3,8 +3,6 @@ const path = require('path');
 
 const config = require('./config/config.js');
 
-const port = config.PORT;
-
 const app = express();
 
 app.use(express.static(path.join(__dirname, '../', 'public')));
@@ -24,10 +22,12 @@ if (process.env.NODE_ENV === 'development') {
 // Set routes
 require('./routes/index')(app);
 
+/*
 app.get("**", function(req, res) {
   res.sendFile(path.resolve(__dirname, '..', 'public', 'index.html'));
 });
+*/
 
-app.listen(port, () => {
-  console.log(`Server listens at port: ${port}`);
+app.listen(config.PORT, () => {
+  console.log(`Server listens at port: ${config.PORT}`);
 });
