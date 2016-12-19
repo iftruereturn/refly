@@ -1,3 +1,5 @@
+// Separate routes to different files
+
 const spaRouter = require('express').Router();
 const apiRouter = require('express').Router();
 const path = require('path');

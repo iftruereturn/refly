@@ -5,6 +5,11 @@ const config = require('./config/config.js');
 
 const app = express();
 
+// db connect
+const mongoose = require('mongoose');
+const dburl = process.env.PROD_MONGODB || config.mongo.URL;
+mongoose.connect(dburl);
+
 app.use(express.static(path.join(__dirname, '../', 'public')));
 
 if (process.env.NODE_ENV === 'development') {
@@ -28,6 +33,6 @@ app.get("**", function(req, res) {
 });
 */
 
-app.listen(config.PORT, () => {
-  console.log(`Server listens at port: ${config.PORT}`);
+app.listen(config.app.PORT, () => {
+  console.log(`Server listens at port: ${config.app.PORT}`);
 });

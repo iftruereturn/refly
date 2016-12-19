@@ -5,15 +5,27 @@ const ImageWidget = require('../models/widgets/image-widget.js');
 const TextWidget = require('../models/widgets/text-widget.js');
 const VideoWidget = require('../models/widgets/video-widget.js');
 
-function getAllFlyers(req, res) {
+function getFlyer(req, res) {
+  const id = req.params.id;
 
+  const promiseFlyer = Flyer.findById(id).exec();
+  promiseFlyer.then((flyer) => {
+    res.end(flyer);
+  });
 }
 
-function getFlyer(req, res) {
+function getAllFlyers(req, res) {
+  const id = req.params.id;
 
+  const promiseAllFlyers = Flyer.find({}).exec();
+  promiseAllFlyers.then((allFlyers) => {
+    res.end(allFlyers);
+  });
 }
 
 function postFlyer(req, res) {
+  // const flyer = req.body;
+
 
 }
 
