@@ -20,64 +20,38 @@ function getFlyer(req, res) {
   const id = req.params.id;
 
   const promiseFlyer = Flyer.findById(id).exec();
-  promiseFlyer.then((flyer) => {
-    res.status(200).end(flyer);
-  }).catch((err) => {
+  promiseFlyer.then(flyer => {
+    res.status(200).json(flyer);
+  }).catch(err => {
+    console.log(err);
     res.status(404).end();
   });
 }
 
 function getAllFlyers(req, res) {
-  const id = req.params.id;
-
-  const promiseAllFlyers = Flyer.find({}).exec();
-  promiseAllFlyers.then((allFlyers) => {
-    res.status(200).end(allFlyers);
-  }).catch((err) => {
+  const promiseAllFlyers = Flyer.find().exec();
+  promiseAllFlyers.then(allFlyers => {
+    res.status(200).json(allFlyers);
+  }).catch(err => {
+    console.log(err);
     res.status(404).end();
   });
 }
 
 function postFlyer(req, res) {
-  // const flyer = req.body;
+  const newFlyer = new Flyer();
 
-/*
-  var newFlyer = new Flyer();
+  newFlyer.stack.push(new HeaderWidget());
 
-  if (templatesList[req.params.template]) {
-    for (var i = 0; i < templatesList[req.params.template].stack.length; i++) {
-      newFlyer.stack.push(new (widgetTypes[templatesList[req.params.template].stack[i]])(templatesList[req.params.template].fields[i]));
-    }
-
-    newFlyer.pageColor = templatesList[req.params.template].pageColor;
-    newFlyer.pageBackground = templatesList[req.params.template].pageBackground;
-    newFlyer.pageFont = templatesList[req.params.template].pageFont;
-    newFlyer.pageTheme = templatesList[req.params.template].pageTheme;
-
-    newFlyer.save(function(err, flyer) {
-      if (err) return res.end(err);
-
-       console.log('flyer ' + req.params.template + ' created with _id: ' + flyer.id);
-       res.end('flyer ' + req.params.template + ' created with _id: ' + flyer.id);
-    })
-
-
-  } else {
-    newFlyer.stack = [
-      new Header()
-    ];
-
-    newFlyer.save(function(err, flyer) {
-      if (err) return res.end(err);
-
-        console.log('default flyer created with _id: ' + flyer.id);
-
-        // res.end('' + flyer.id);
-        res.json(flyer);
-    })
-
-  }
-*/
+  const newFlyerPromise = newFlyer.save();
+  newFlyerPromise.then(flyer => {
+    console.log('flyer created with _id: ' + flyer.id);
+    res.location('/flyers/' + flyer.id)
+    res.status(201).send('flyer created with _id: ' + flyer.id);
+  }).catch(err => {
+    console.log(err);
+    res.status(500).end();
+  });
 }
 
 function updateFlyer(req, res) {

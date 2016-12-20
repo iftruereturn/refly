@@ -13,6 +13,7 @@ mongoose.connect(dburl);
 
 app.use(express.static(path.join(__dirname, '../', 'public')));
 
+/*
 if (process.env.NODE_ENV === 'development') {
   const webpack = require('webpack');
   const webpackConfig = require('../webpack.dev.config.js');
@@ -24,6 +25,7 @@ if (process.env.NODE_ENV === 'development') {
 
   app.use(require('webpack-hot-middleware')(compiler));
 }
+*/
 
 // Set routes
 require('./routes')(app);
