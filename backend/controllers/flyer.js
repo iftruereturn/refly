@@ -59,7 +59,15 @@ function updateFlyer(req, res) {
 }
 
 function deleteFlyer(req, res) {
+  const id = req.params.id;
 
+  const promiseFlyer = Flyer.findByIdAndRemove(id).exec();
+  promiseFlyer.then(() => {
+    res.status(200).end();
+  }).catch(err => {
+    console.log(err);
+    res.status(404).end();
+  });
 }
 
 module.exports = {
