@@ -39,10 +39,14 @@ function getAllFlyers(req, res) {
 function postFlyer(req, res) {
   const newFlyer = new Flyer();
 
-  newFlyer.stack.push(new HeaderWidget());
-
   const newFlyerPromise = newFlyer.save();
   newFlyerPromise.then(flyer => {
+    flyer.stack.push(new HeaderWidget({
+      flyerId: flyer.id
+    }));
+
+    return flyer.save();
+  }).then(flyer => {
     console.log('flyer created with _id: ' + flyer.id);
     res.location('/flyers/' + flyer.id)
     res.status(201).send('flyer created with _id: ' + flyer.id);
@@ -67,11 +71,13 @@ function updateFlyer(req, res) {
         for (let widget in updatedProps[prop]) {
 
           // 1. Get specific constructor by 'type' - (widgetTypes)
-          // 2. Call it with widget parameters - (updatedProps[prop][widget])
+          // 2. Call it with widget parameters - (updatedProps[prop][widget]) + flyerId
           // 3. And then push new widget to flyer stack
 
           flyer.stack.push(
-            new (widgetTypes[(updatedProps[prop][widget]['type'])])(updatedProps[prop][widget])
+            new (widgetTypes[(updatedProps[prop][widget]['type'])])(
+                Object.assign({ flyerId: flyer.id }, updatedProps[prop][widget])
+              )
           );
         }
       } else {
