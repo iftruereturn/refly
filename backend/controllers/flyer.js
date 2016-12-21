@@ -1,20 +1,18 @@
 const Flyer = require('../models/flyer.js');
 
 const HeaderWidget = require('../models/widgets/header-widget.js');
-const ImageWidget = require('../models/widgets/image-widget.js');
 const TextWidget = require('../models/widgets/text-widget.js');
+const ImageWidget = require('../models/widgets/image-widget.js');
 const VideoWidget = require('../models/widgets/video-widget.js');
 
-/*
+
 const widgetTypes = {
-  "header": Header,
-  "gallery": Gallery,
-  "paragraph": Paragraph,
-  "image": Image,
-  "video": Video,
-  "bio": Bio
+  "HeaderWidget": HeaderWidget,
+  "TextWidget": TextWidget,
+  "ImageWidget": ImageWidget,
+  "VideoWidget": VideoWidget
 };
-*/
+
 
 function getFlyer(req, res) {
   const id = req.params.id;
@@ -55,6 +53,34 @@ function postFlyer(req, res) {
 }
 
 function updateFlyer(req, res) {
+  const id = req.params.id;
+  const updatedProps = req.body;
+
+  console.log(req.body);
+
+  const updatingFlyerPromise = Flyer.findById(id).exec();
+  updatingFlyerPromise.then(flyer => {
+    for (let prop in updatedProps) {
+      if (prop === 'stack') {
+        flyer.stack = [];
+
+        for (let widget in updatedProps[prop]) {
+          flyer.stack.push(
+            (widgetTypes[(updatedProps[prop][widget]['type'])])(updatedProps[prop][widget])
+          );
+        }
+      } else {
+        flyer[prop] = updatedProps[prop];
+      }
+    }
+
+    return flyer.save();
+  }).then(flyer => {
+    res.status(200).end();
+  }).catch(err => {
+    console.log(err);
+    res.status(404).end();
+  });
 
 }
 

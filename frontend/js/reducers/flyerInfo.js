@@ -1,12 +1,12 @@
 import * as flyerActions from '../constants/Flyer';
 
 const initialState = {
-  id: null,
-  owner: '',
-  createdAt: '',
-  updatedAt: '',
   addingPanelPosition: 0,
   isAddingPanelHidden: true,
+  id: null,
+  createdAt: '',
+  updatedAt: '',
+  owner: '',
   background: 'bg-black',
   color: 'black',
   font: 'monospace',
