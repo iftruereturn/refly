@@ -60,12 +60,13 @@ function updateFlyer(req, res) {
   const id = req.params.id;
   const updatedProps = req.body;
 
-  console.log(req.body);
-
   const updatingFlyerPromise = Flyer.findById(id).exec();
   updatingFlyerPromise.then(flyer => {
+
     for (let prop in updatedProps) {
       if (prop === 'stack') {
+
+        // ? Do I need to remove multiple sub documents correct way ?
         flyer.stack = [];
 
         for (let widget in updatedProps[prop]) {
