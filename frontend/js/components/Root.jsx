@@ -1,12 +1,22 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import App from './App';
+import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 
+import App from './App';
+import Index from './pages/Index';
+import FlyerEditor from './pages/FlyerEditor';
+import NotFound from './pages/NotFound';
 
 // Router goes here
 const Root = ({ store }) => (
   <Provider store={store}>
-    <App />
+    <Router history={browserHistory}>
+      <Route path="/" component={App}>
+        <IndexRoute component={Index} />
+        <Route path="editor" component={FlyerEditor} />
+      </Route>
+      <Route path="*" component={NotFound} />
+    </Router>
   </Provider>
 );
 
