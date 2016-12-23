@@ -4,8 +4,12 @@ import { Link } from 'react-router';
 const App = ({ children }) => (
   <div>
     <ul>
-      <li><Link to="/">Index</Link></li>
-      <li><Link to="/editor">Editor</Link></li>
+      <li>
+        <Link activeClassName="active-link" onlyActiveOnIndex to="/">Index</Link>
+      </li>
+      <li>
+        <Link activeClassName="active-link" to="/editor">Editor</Link>
+      </li>
     </ul>
     { children }
   </div>

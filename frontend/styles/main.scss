@@ -155,6 +155,10 @@ html, body, #root {
 
 }
 
+.active-link {
+  font-weight: bold;
+}
+
 
 @import 'flyer-settings-styles/colors.scss';
 @import 'flyer-settings-styles/fonts.scss';

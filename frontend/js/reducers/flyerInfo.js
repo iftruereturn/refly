@@ -3,6 +3,7 @@ import * as flyerActions from '../constants/Flyer';
 const initialState = {
   addingPanelPosition: 0,
   isAddingPanelHidden: true,
+
   id: null,
   createdAt: '',
   updatedAt: '',
