@@ -1,9 +1,10 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import { Router, Route, IndexRoute, browserHistory /* IndexRedirect */ } from 'react-router';
+import { Router, Route, IndexRoute, browserHistory } from 'react-router';
+
 
 import App from './App';
-import Index from './pages/Index';
+import Main from './pages/Main';
 import FlyerEditor from './pages/FlyerEditor';
 import NotFound from './pages/NotFound';
 
@@ -12,7 +13,7 @@ const Root = ({ store }) => (
   <Provider store={store}>
     <Router history={browserHistory}>
       <Route path="/" component={App}>
-        <IndexRoute component={Index} />
+        <IndexRoute component={Main} />
         <Route path="editor" component={FlyerEditor} />
       </Route>
       <Route path="*" component={NotFound} />

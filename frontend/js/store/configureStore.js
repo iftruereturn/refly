@@ -14,12 +14,24 @@ const configureStore = () => {
     middlewares.push(createLogger());
   }
 
-  return createStore(
+  const store = createStore(
     reflyApp,
     composeEnhancers(
       applyMiddleware(...middlewares),
     )
   );
+
+  if (module.hot) {
+    // Enable Webpack hot module replacement for reducers
+    module.hot.accept('../reducers', () => {
+      // eslint-disable-next-line global-require
+      const nextRootReducer = require('../reducers').default;
+
+      store.replaceReducer(nextRootReducer);
+    });
+  }
+
+  return store;
 };
 
 export default configureStore;

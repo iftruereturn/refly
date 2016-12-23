@@ -6,7 +6,7 @@ const initialState = {
   loggingOut: false,
 
   username: '',
-  loggedIn: false,
+  isAuthenticated: false,
 };
 
 const user = (state = initialState, action) => {
@@ -41,7 +41,7 @@ const user = (state = initialState, action) => {
       return {
         ...state,
         loggingIn: payload.loggingIn,
-        loggedIn: payload.loggedIn,
+        isAuthenticated: payload.isAuthenticated,
         username: payload.username,
       };
 
@@ -61,7 +61,7 @@ const user = (state = initialState, action) => {
       return {
         ...state,
         loggingOut: payload.loggingOut,
-        loggedIn: payload.loggedIn,
+        isAuthenticated: payload.isAuthenticated,
         username: payload.username,
       };
 
