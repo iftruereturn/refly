@@ -1,17 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
+import { browserHistory } from 'react-router';
+import { syncHistoryWithStore } from 'react-router-redux';
+
 import configureStore from './store/configureStore';
 import Root from './components/Root';
 
 import './../styles/main.scss';
 
 const store = configureStore();
+const history = syncHistoryWithStore(browserHistory, store);
 
 ReactDOM.render(
   <AppContainer>
     <Root
       store={store}
+      history={history}
     />
   </AppContainer>,
   document.getElementById('root')

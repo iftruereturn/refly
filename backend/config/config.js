@@ -6,7 +6,7 @@ const config = {
     KEYS: ['your-session-secret']
   },
   mongo: {
-    URL: 'mongodb://127.0.0.1:27017/refly'
+    URL: 'mongodb://127.0.0.1/refly'
   }
 };
 

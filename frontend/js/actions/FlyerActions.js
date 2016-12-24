@@ -159,3 +159,8 @@ export const changeFlyerTheme = theme => ({
     theme,
   },
 });
+
+// eslint-disable-next-line no-unused-vars
+export const createFlyer = template => (dispatch) => {
+
+};

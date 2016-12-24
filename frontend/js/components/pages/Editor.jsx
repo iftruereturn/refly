@@ -1,10 +1,10 @@
 import React from 'react';
 import FlyerStackEditor from '../../containers/FlyerStackEditor';
 
-const FlyerEditor = () => (
+const Editor = () => (
   <div className="flyer-editor">
     <FlyerStackEditor />
   </div>
 );
 
-export default FlyerEditor;
+export default Editor;

@@ -25,7 +25,7 @@ const user = (state = initialState, action) => {
         signingUp: payload.signingUp,
       };
 
-    case userActions.SIGNUP_FAIL:
+    case userActions.SIGNUP_FAILURE:
       return {
         ...state,
         signingUp: payload.signingUp,
@@ -45,7 +45,7 @@ const user = (state = initialState, action) => {
         username: payload.username,
       };
 
-    case userActions.LOGIN_FAIL:
+    case userActions.LOGIN_FAILURE:
       return {
         ...state,
         loggingIn: payload.loggingIn,
@@ -65,7 +65,7 @@ const user = (state = initialState, action) => {
         username: payload.username,
       };
 
-    case userActions.LOGOUT_FAIL:
+    case userActions.LOGOUT_FAILURE:
       return {
         ...state,
         loggingOut: payload.loggingOut,
