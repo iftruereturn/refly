@@ -37,10 +37,11 @@ FlyerStackEditor.propTypes = {
   flyerPossibleSettings: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = state => (
+const mapStateToProps = (state, ownProps) => (
   { flyerInfo: state.flyerInfo,
     flyerStack: state.flyerStack,
-    flyerPossibleSettings: state.flyerPossibleSettings }
+    flyerPossibleSettings: state.flyerPossibleSettings,
+    flyerId: ownProps.id }
 );
 
 // const mapDispatchToProps = (dispatch) => {

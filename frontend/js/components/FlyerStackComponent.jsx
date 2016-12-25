@@ -12,6 +12,8 @@ import AddingPanel from './tools/AddingPanel';
 @SortableContainer
 class FlyerStackComponent extends Component {
   static propTypes = {
+    flyerId: PropTypes.string.isRequired,
+
     flyerStack: PropTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types
 
     flyerInfo: PropTypes.shape({
@@ -31,6 +33,17 @@ class FlyerStackComponent extends Component {
 
     showAddingPanel: PropTypes.func.isRequired,
     hideAddingPanel: PropTypes.func.isRequired,
+
+    fetchFlyer: PropTypes.func.isRequired,
+  }
+
+  componentWillMount() {
+    this.fetchData();
+  }
+
+  fetchData() {
+    const { flyerId, fetchFlyer } = this.props;
+    fetchFlyer(flyerId);
   }
 
   render() {

@@ -1,5 +1,6 @@
-import * as FlyerActions from '../constants/flyer';
+import { browserHistory } from 'react-router';
 
+import * as FlyerActions from '../constants/flyer';
 
 let widgetId = 0; // temporary variable
 // Should I generate flyer\widget IDs on the server or on the client?
@@ -160,7 +161,68 @@ export const changeFlyerTheme = theme => ({
   },
 });
 
-// eslint-disable-next-line no-unused-vars
-export const createFlyer = template => (dispatch) => {
+export const createFlyer = (/* template */) => (dispatch) => {
+  dispatch({
+    type: FlyerActions.CREATE_NEW_FLYER_REQUEST,
+    payload: {
+      isCreating: true,
+    },
+  });
 
+  return fetch('/api/flyers', {
+    method: 'post',
+    headers: {
+      'Content-type': 'application/json',
+    },
+    body: JSON.stringify({}),
+    credentials: 'same-origin',
+  }).then(response => response.headers.get('location'))
+    .then((location) => {
+      dispatch({
+        type: FlyerActions.CREATE_NEW_FLYER_SUCCESS,
+        payload: {
+          isCreating: false,
+        },
+      });
+      const path = `editor${location.slice(7)}`;
+      browserHistory.push(path);
+    }).catch(() => {
+      dispatch({
+        type: FlyerActions.CREATE_NEW_FLYER_FAILURE,
+        payload: {
+          isCreating: false,
+        },
+      });
+    });
+};
+
+export const fetchFlyer = id => (dispatch) => {
+  dispatch({
+    type: FlyerActions.FETCH_FLYER_REQUEST,
+    payload: {
+      isFetching: true,
+      id,
+    },
+  });
+
+  return fetch(`/api/flyers/${id}`, {
+    credentials: 'same-origin',
+  }).then(response => response.json())
+    .then((flyer) => {
+      dispatch({
+        type: FlyerActions.FETCH_FLYER_SUCCESS,
+        payload: {
+          isFetching: false,
+          flyer,
+        },
+      });
+    })
+    .catch(() => {
+      dispatch({
+        type: FlyerActions.FETCH_FLYER_FAILURE,
+        payload: {
+          isFetching: false,
+        },
+      });
+    });
 };

@@ -3,6 +3,9 @@ import * as FlyerActions from '../constants/flyer';
 const initialState = {
   addingPanelPosition: 0,
   isAddingPanelHidden: true,
+  isCreating: false,
+  isFetching: false,
+  isSaving: false,
 
   id: null,
   createdAt: '',
@@ -53,6 +56,61 @@ const flyerInfo = (state = initialState, action) => {
       return {
         ...state,
         theme: payload.theme,
+      };
+
+    case FlyerActions.CREATE_NEW_FLYER_REQUEST:
+      return {
+        ...state,
+        isCreating: payload.isCreating,
+      };
+
+    case FlyerActions.CREATE_NEW_FLYER_SUCCESS:
+      return {
+        ...state,
+        isCreating: payload.isCreating,
+      };
+
+    case FlyerActions.CREATE_NEW_FLYER_FAILURE:
+      return {
+        ...state,
+        isCreating: payload.isCreating,
+      };
+
+    case FlyerActions.FETCH_FLYER_REQUEST:
+      return {
+        ...state,
+        isFetching: payload.isFetching,
+        id: payload.id,
+      };
+
+    case FlyerActions.FETCH_FLYER_SUCCESS:
+      return {
+        ...state,
+        isFetching: payload.isFetching,
+      };
+
+    case FlyerActions.FETCH_FLYER_FAILURE:
+      return {
+        ...state,
+        isFetching: payload.isFetching,
+      };
+
+    case FlyerActions.SAVE_FLYER_REQUEST:
+      return {
+        ...state,
+        isSaving: payload.isSaving,
+      };
+
+    case FlyerActions.SAVE_FLYER_SUCCESS:
+      return {
+        ...state,
+        isSaving: payload.isSaving,
+      };
+
+    case FlyerActions.SAVE_FLYER_FAILURE:
+      return {
+        ...state,
+        isSaving: payload.isSaving,
       };
 
     default:

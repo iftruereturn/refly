@@ -77,6 +77,11 @@ const flyerStack = (state = initialState, action) => {
         return widget;
       });
 
+    case FlyerActions.FETCH_FLYER_SUCCESS:
+      return {
+        ...payload.flyer,
+      };
+
     default:
       return state;
   }

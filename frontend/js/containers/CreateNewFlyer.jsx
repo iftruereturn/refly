@@ -5,19 +5,28 @@ import { createFlyer } from '../actions/flyer';
 
 const CreateNewFlyer = props => (
   <div>
-    Create new flyer
-    <button onClick={() => { props.createFlyer(); }}>Create</button>
+    {
+      props.isCreating ?
+        <div>
+          Creating
+        </div> :
+        <div>
+          Create new flyer
+          <button onClick={() => { props.createFlyer(); }}>Create</button>
+        </div>
+    }
   </div>
 );
 
 CreateNewFlyer.propTypes = {
   createFlyer: PropTypes.func.isRequired,
+  isCreating: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = state => (
-  { flyerInfo: state.flyerInfo,
-    flyerStack: state.flyerStack,
-    flyerPossibleSettings: state.flyerPossibleSettings }
+  {
+    isCreating: state.flyerInfo.isCreating,
+  }
 );
 
 export default connect(mapStateToProps, { createFlyer })(CreateNewFlyer);
