@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 
-import { createFlyer } from '../actions/FlyerActions';
+import { createFlyer } from '../actions/flyer';
 
 const CreateNewFlyer = props => (
   <div>

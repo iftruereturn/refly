@@ -1,4 +1,4 @@
-import * as userActions from '../constants/User';
+import * as UserActions from '../constants/user';
 
 export const signup = (username, password) => (dispatch) => {
 

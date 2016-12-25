@@ -1,4 +1,4 @@
-// import * as flyerActions from '../constants/Flyer';
+// import * as FlyerActions from '../constants/flyer';
 
 const initialState = {
   themes: [

@@ -1,4 +1,4 @@
-import * as FlyerActions from '../constants/Flyer';
+import * as FlyerActions from '../constants/flyer';
 
 
 let widgetId = 0; // temporary variable

@@ -1,5 +1,5 @@
 import { arrayMove } from 'react-sortable-hoc';
-import * as flyerActions from '../constants/Flyer';
+import * as FlyerActions from '../constants/flyer';
 
 const initialState = [];
 
@@ -7,7 +7,7 @@ const flyerStack = (state = initialState, action) => {
   const { type, payload } = action;
 
   switch (type) {
-    case flyerActions.ADD_WIDGET: {
+    case FlyerActions.ADD_WIDGET: {
       const { position } = payload;
 
       if (position === undefined) {
@@ -28,10 +28,10 @@ const flyerStack = (state = initialState, action) => {
       );
     }
 
-    case flyerActions.MOVE_WIDGET:
+    case FlyerActions.MOVE_WIDGET:
       return arrayMove(state, payload.oldIndex, payload.newIndex);
 
-    case flyerActions.OPEN_WIDGET_EDIT:
+    case FlyerActions.OPEN_WIDGET_EDIT:
       return state.map((widget) => {
         const { id, editing } = payload;
 
@@ -44,7 +44,7 @@ const flyerStack = (state = initialState, action) => {
         return widget;
       });
 
-    case flyerActions.CLOSE_WIDGET_EDIT:
+    case FlyerActions.CLOSE_WIDGET_EDIT:
       return state.map((widget) => {
         const { id, editing } = payload;
 
@@ -57,14 +57,14 @@ const flyerStack = (state = initialState, action) => {
         return widget;
       });
 
-    case flyerActions.DELETE_WIDGET:
+    case FlyerActions.DELETE_WIDGET:
       return state.filter((widget) => {
         const { id } = payload;
 
         return (widget.id !== id);
       });
 
-    case flyerActions.SAVE_WIDGET:
+    case FlyerActions.SAVE_WIDGET:
       return state.map((widget) => {
         const { id } = payload;
 

@@ -1,4 +1,4 @@
-import * as userActions from '../constants/User';
+import * as UserActions from '../constants/user';
 
 const initialState = {
   signingUp: false,
@@ -13,31 +13,31 @@ const user = (state = initialState, action) => {
   const { type, payload } = action;
 
   switch (type) {
-    case userActions.SIGNUP_REQUEST:
+    case UserActions.SIGNUP_REQUEST:
       return {
         ...state,
         signingUp: payload.signingUp,
       };
 
-    case userActions.SIGNUP_SUCCESS:
+    case UserActions.SIGNUP_SUCCESS:
       return {
         ...state,
         signingUp: payload.signingUp,
       };
 
-    case userActions.SIGNUP_FAILURE:
+    case UserActions.SIGNUP_FAILURE:
       return {
         ...state,
         signingUp: payload.signingUp,
       };
 
-    case userActions.LOGIN_REQUEST:
+    case UserActions.LOGIN_REQUEST:
       return {
         ...state,
         loggingIn: payload.loggingIn,
       };
 
-    case userActions.LOGIN_SUCCESS:
+    case UserActions.LOGIN_SUCCESS:
       return {
         ...state,
         loggingIn: payload.loggingIn,
@@ -45,19 +45,19 @@ const user = (state = initialState, action) => {
         username: payload.username,
       };
 
-    case userActions.LOGIN_FAILURE:
+    case UserActions.LOGIN_FAILURE:
       return {
         ...state,
         loggingIn: payload.loggingIn,
       };
 
-    case userActions.LOGOUT_REQUEST:
+    case UserActions.LOGOUT_REQUEST:
       return {
         ...state,
         loggingOut: payload.loggingOut,
       };
 
-    case userActions.LOGOUT_SUCCESS:
+    case UserActions.LOGOUT_SUCCESS:
       return {
         ...state,
         loggingOut: payload.loggingOut,
@@ -65,7 +65,7 @@ const user = (state = initialState, action) => {
         username: payload.username,
       };
 
-    case userActions.LOGOUT_FAILURE:
+    case UserActions.LOGOUT_FAILURE:
       return {
         ...state,
         loggingOut: payload.loggingOut,

@@ -1,4 +1,4 @@
-import * as flyerActions from '../constants/Flyer';
+import * as FlyerActions from '../constants/flyer';
 
 const initialState = {
   addingPanelPosition: 0,
@@ -18,38 +18,38 @@ const flyerInfo = (state = initialState, action) => {
   const { type, payload } = action;
 
   switch (type) {
-    case flyerActions.SHOW_ADDING_PANEL:
+    case FlyerActions.SHOW_ADDING_PANEL:
       return {
         ...state,
         addingPanelPosition: payload.addingPanelPosition,
         isAddingPanelHidden: payload.isAddingPanelHidden,
       };
 
-    case flyerActions.HIDE_ADDING_PANEL:
+    case FlyerActions.HIDE_ADDING_PANEL:
       return {
         ...state,
         isAddingPanelHidden: payload.isAddingPanelHidden,
       };
 
-    case flyerActions.CHANGE_FLYER_BACKGROUND:
+    case FlyerActions.CHANGE_FLYER_BACKGROUND:
       return {
         ...state,
         background: payload.background,
       };
 
-    case flyerActions.CHANGE_FLYER_COLOR:
+    case FlyerActions.CHANGE_FLYER_COLOR:
       return {
         ...state,
         color: payload.color,
       };
 
-    case flyerActions.CHANGE_FLYER_FONT:
+    case FlyerActions.CHANGE_FLYER_FONT:
       return {
         ...state,
         font: payload.font,
       };
 
-    case flyerActions.CHANGE_FLYER_THEME:
+    case FlyerActions.CHANGE_FLYER_THEME:
       return {
         ...state,
         theme: payload.theme,

@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 
-import * as FlyerActions from '../actions/FlyerActions';
+import * as flyerActions from '../actions/flyer';
 
 import FlyerStackComponent from '../components/FlyerStackComponent';
 import AddingPanelBottom from '../components/tools/AddingPanelBottom';
@@ -46,4 +46,4 @@ const mapStateToProps = state => (
 // const mapDispatchToProps = (dispatch) => {
 // }
 
-export default connect(mapStateToProps, FlyerActions)(FlyerStackEditor);
+export default connect(mapStateToProps, flyerActions)(FlyerStackEditor);
