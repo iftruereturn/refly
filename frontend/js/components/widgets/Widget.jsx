@@ -14,14 +14,27 @@ class Widget extends Component { // eslint-disable-line react/prefer-stateless-f
     showAddingPanel: PropTypes.func.isRequired,
     children: PropTypes.node.isRequired,
     styleClasses: PropTypes.string,
+
+    styleSettings: PropTypes.shape({
+      background: PropTypes.string, // eslint-disable-line react/no-unused-prop-types
+      font: PropTypes.string, // eslint-disable-line react/no-unused-prop-types
+      theme: PropTypes.string, // eslint-disable-line react/no-unused-prop-types
+      color: PropTypes.string, // eslint-disable-line react/no-unused-prop-types
+    }),
   }
 
   render() {
     const { children,
       styleClasses,
+      styleSettings,
       id, editing, index,
       openWidgetEdit, closeWidgetEdit, deleteWidget, showAddingPanel } = this.props;
-    const classes = `widget ${editing ? '' : 'can-drag'} ${styleClasses}`;
+
+    const classes = `widget ${editing ? '' : 'can-drag'} ${styleClasses}` +
+      ` flyer-theme-${styleSettings.theme}` +
+      ` flyer-background-${styleSettings.background}` +
+      ` flyer-color-${styleSettings.color}` +
+      ` flyer-font-${styleSettings.font}`;
 
     return (
       <div

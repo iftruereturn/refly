@@ -15,10 +15,10 @@ class FlyerStackComponent extends Component {
     flyerStack: PropTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types
 
     flyerInfo: PropTypes.shape({
-      background: PropTypes.string,
-      font: PropTypes.string,
-      theme: PropTypes.string,
-      color: PropTypes.string,
+      background: PropTypes.string, // eslint-disable-line react/no-unused-prop-types
+      font: PropTypes.string, // eslint-disable-line react/no-unused-prop-types
+      theme: PropTypes.string, // eslint-disable-line react/no-unused-prop-types
+      color: PropTypes.string, // eslint-disable-line react/no-unused-prop-types
       addingPanelPosition: PropTypes.number.isRequired,
       isAddingPanelHidden: PropTypes.bool.isRequired,
     }),
@@ -40,6 +40,16 @@ class FlyerStackComponent extends Component {
 
     const { addingPanelPosition, isAddingPanelHidden } = this.props.flyerInfo;
 
+    const styleSettings = {
+      color: this.props.flyerInfo.color,
+      font: this.props.flyerInfo.font,
+      theme: this.props.flyerInfo.theme,
+      background: this.props.flyerInfo.background,
+    };
+
+    const classNamesFlyer = `flyer-stack flyer-theme-${this.props.flyerInfo.theme}` +
+      ` flyer-background-${this.props.flyerInfo.background}`;
+
     const flyer = flyerStack.map((widget, index) => {
       switch (widget.type) {
         case 'TextWidget':
@@ -56,6 +66,7 @@ class FlyerStackComponent extends Component {
               deleteWidget={deleteWidget}
               saveWidget={saveWidget}
               showAddingPanel={showAddingPanel}
+              styleSettings={styleSettings}
             />
           );
 
@@ -73,6 +84,7 @@ class FlyerStackComponent extends Component {
               deleteWidget={deleteWidget}
               saveWidget={saveWidget}
               showAddingPanel={showAddingPanel}
+              styleSettings={styleSettings}
             />
           );
 
@@ -90,6 +102,7 @@ class FlyerStackComponent extends Component {
               deleteWidget={deleteWidget}
               saveWidget={saveWidget}
               showAddingPanel={showAddingPanel}
+              styleSettings={styleSettings}
             />
           );
 
@@ -107,6 +120,7 @@ class FlyerStackComponent extends Component {
               deleteWidget={deleteWidget}
               saveWidget={saveWidget}
               showAddingPanel={showAddingPanel}
+              styleSettings={styleSettings}
             />
           );
 
@@ -126,11 +140,6 @@ class FlyerStackComponent extends Component {
         hideAddingPanel={hideAddingPanel}
       />
     );
-
-    const classNamesFlyer = `flyer-stack flyer-color-setting-${this.props.flyerInfo.color}` +
-      ` flyer-font-setting-${this.props.flyerInfo.font}` +
-      ` flyer-theme-setting-${this.props.flyerInfo.theme}` +
-      ` flyer-background-setting-${this.props.flyerInfo.background}`;
 
     return (
       <div className={classNamesFlyer}>

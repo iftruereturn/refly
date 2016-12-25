@@ -14,10 +14,17 @@ class TextWidget extends Component { // eslint-disable-line react/prefer-statele
     deleteWidget: PropTypes.func.isRequired,
     saveWidget: PropTypes.func.isRequired,
     showAddingPanel: PropTypes.func.isRequired,
+
+    styleSettings: PropTypes.shape({
+      background: PropTypes.string, // eslint-disable-line react/no-unused-prop-types
+      font: PropTypes.string, // eslint-disable-line react/no-unused-prop-types
+      theme: PropTypes.string, // eslint-disable-line react/no-unused-prop-types
+      color: PropTypes.string, // eslint-disable-line react/no-unused-prop-types
+    }),
   }
 
   render() {
-    const { text, title, id, index, editing,
+    const { text, title, id, index, editing, styleSettings,
       openWidgetEdit, closeWidgetEdit, deleteWidget, saveWidget, showAddingPanel } = this.props;
 
     return (
@@ -31,6 +38,7 @@ class TextWidget extends Component { // eslint-disable-line react/prefer-statele
         saveWidget={saveWidget}
         showAddingPanel={showAddingPanel}
         styleClasses={'text-widget'}
+        styleSettings={styleSettings}
       >
 
         {!editing ?

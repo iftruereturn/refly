@@ -15,10 +15,17 @@ class VideoWidget extends Component {
     deleteWidget: PropTypes.func.isRequired,
     saveWidget: PropTypes.func.isRequired,
     showAddingPanel: PropTypes.func.isRequired,
+
+    styleSettings: PropTypes.shape({
+      background: PropTypes.string, // eslint-disable-line react/no-unused-prop-types
+      font: PropTypes.string, // eslint-disable-line react/no-unused-prop-types
+      theme: PropTypes.string, // eslint-disable-line react/no-unused-prop-types
+      color: PropTypes.string, // eslint-disable-line react/no-unused-prop-types
+    }),
   }
 
   render() {
-    const { videoUrl, title, id, index, editing,
+    const { videoUrl, title, id, index, editing, styleSettings,
       openWidgetEdit, closeWidgetEdit, deleteWidget, saveWidget, showAddingPanel } = this.props;
 
     return (
@@ -32,6 +39,7 @@ class VideoWidget extends Component {
         saveWidget={saveWidget}
         showAddingPanel={showAddingPanel}
         styleClasses={'video-widget'}
+        styleSettings={styleSettings}
       >
 
         {!editing ?
