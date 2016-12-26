@@ -10,7 +10,7 @@ import VideoWidget from './widgets/VideoWidget';
 import AddingPanel from './tools/AddingPanel';
 
 @SortableContainer
-class FlyerStackComponent extends Component {
+class Editor extends Component {
   static propTypes = {
     flyerId: PropTypes.string.isRequired,
 
@@ -68,10 +68,10 @@ class FlyerStackComponent extends Component {
         case 'TextWidget':
           return (
             <TextWidget
-              key={widget.id}
+              key={widget._id}
               title={widget.title}
               text={widget.text}
-              id={widget.id}
+              id={widget._id}
               editing={widget.editing}
               index={index}
               openWidgetEdit={openWidgetEdit}
@@ -86,10 +86,10 @@ class FlyerStackComponent extends Component {
         case 'ImageWidget':
           return (
             <ImageWidget
-              key={widget.id}
+              key={widget._id}
               title={widget.title}
               image={widget.image}
-              id={widget.id}
+              id={widget._id}
               editing={widget.editing}
               index={index}
               openWidgetEdit={openWidgetEdit}
@@ -104,10 +104,10 @@ class FlyerStackComponent extends Component {
         case 'HeaderWidget':
           return (
             <HeaderWidget
-              key={widget.id}
+              key={widget._id}
               title={widget.title}
               text={widget.text}
-              id={widget.id}
+              id={widget._id}
               editing={widget.editing}
               index={index}
               openWidgetEdit={openWidgetEdit}
@@ -122,10 +122,10 @@ class FlyerStackComponent extends Component {
         case 'VideoWidget':
           return (
             <VideoWidget
-              key={widget.id}
+              key={widget._id}
               title={widget.title}
               videoUrl={widget.videoUrl}
-              id={widget.id}
+              id={widget._id}
               editing={widget.editing}
               index={index}
               openWidgetEdit={openWidgetEdit}
@@ -168,4 +168,4 @@ class FlyerStackComponent extends Component {
   }
 }
 
-export default FlyerStackComponent; // eslint-disable-line new-cap
+export default Editor; // eslint-disable-line new-cap

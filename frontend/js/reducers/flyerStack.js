@@ -78,9 +78,9 @@ const flyerStack = (state = initialState, action) => {
       });
 
     case FlyerActions.FETCH_FLYER_SUCCESS:
-      return {
-        ...payload.flyer,
-      };
+      return [
+        ...payload.flyer.stack,
+      ];
 
     default:
       return state;

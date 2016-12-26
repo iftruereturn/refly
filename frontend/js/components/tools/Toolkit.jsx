@@ -30,7 +30,7 @@ const Toolkit = ({
 );
 
 Toolkit.propTypes = {
-  id: PropTypes.number.isRequired,
+  id: PropTypes.string.isRequired,
   editing: PropTypes.bool,
   index: PropTypes.number.isRequired,
   openWidgetEdit: PropTypes.func.isRequired,

@@ -19,6 +19,7 @@ function getFlyer(req, res) {
 
   const promiseFlyer = Flyer.findById(id).exec();
   promiseFlyer.then(flyer => {
+    console.log(flyer);
     res.status(200).json(flyer);
   }).catch(err => {
     console.log(err);
@@ -42,7 +43,9 @@ function postFlyer(req, res) {
   const newFlyerPromise = newFlyer.save();
   newFlyerPromise.then(flyer => {
     flyer.stack.push(new HeaderWidget({
-      flyerId: flyer.id
+      flyerId: flyer.id,
+      title: 'Sample title',
+      text: 'Sample text'
     }));
 
     return flyer.save();

@@ -4,7 +4,7 @@ import Widget from './Widget';
 
 class TextWidget extends Component { // eslint-disable-line react/prefer-stateless-function
   static propTypes = {
-    id: PropTypes.number.isRequired,
+    id: PropTypes.string.isRequired,
     index: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
     text: PropTypes.string.isRequired,

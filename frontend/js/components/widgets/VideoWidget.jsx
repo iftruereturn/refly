@@ -5,7 +5,7 @@ import Widget from './Widget';
 // eslint-disable-next-line react/prefer-stateless-function
 class VideoWidget extends Component {
   static propTypes = {
-    id: PropTypes.number.isRequired,
+    id: PropTypes.string.isRequired,
     index: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
     videoUrl: PropTypes.string.isRequired,

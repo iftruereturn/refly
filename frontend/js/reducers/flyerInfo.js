@@ -87,6 +87,19 @@ const flyerInfo = (state = initialState, action) => {
       return {
         ...state,
         isFetching: payload.isFetching,
+
+        // eslint-disable-next-line no-underscore-dangle
+        id: payload.flyer._id,
+        createdAt: payload.flyer.createdAt,
+        updatedAt: payload.flyer.updatedAt,
+        owner: '',
+        background: payload.flyer.background,
+        color: payload.flyer.color,
+        font: payload.flyer.font,
+        theme: payload.flyer.theme,
+
+        addingPanelPosition: 0,
+        isAddingPanelHidden: true,
       };
 
     case FlyerActions.FETCH_FLYER_FAILURE:

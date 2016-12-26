@@ -185,6 +185,7 @@ export const createFlyer = (/* template */) => (dispatch) => {
         },
       });
       const path = `editor${location.slice(7)}`;
+      console.log(path);
       browserHistory.push(path);
     }).catch(() => {
       dispatch({
@@ -209,6 +210,8 @@ export const fetchFlyer = id => (dispatch) => {
     credentials: 'same-origin',
   }).then(response => response.json())
     .then((flyer) => {
+      console.log(flyer);
+
       dispatch({
         type: FlyerActions.FETCH_FLYER_SUCCESS,
         payload: {
@@ -226,3 +229,7 @@ export const fetchFlyer = id => (dispatch) => {
       });
     });
 };
+/*
+export const saveFlyer = () => (dispatch, getState) => {
+};
+*/

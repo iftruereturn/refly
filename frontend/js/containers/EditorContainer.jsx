@@ -3,13 +3,13 @@ import { connect } from 'react-redux';
 
 import * as flyerActions from '../actions/flyer';
 
-import FlyerStackComponent from '../components/FlyerStackComponent';
+import Editor from '../components/Editor';
 import AddingPanelBottom from '../components/tools/AddingPanelBottom';
 import SidePanel from '../components/editor/SidePanel';
 
-const FlyerStackEditor = props => (
+const EditorContainer = props => (
   <div className={'flyer-stack-wrapper'}>
-    <FlyerStackComponent
+    <Editor
       {...props}
       onSortEnd={props.moveWidget}
       distance={10}
@@ -29,7 +29,7 @@ const FlyerStackEditor = props => (
   </div>
 );
 
-FlyerStackEditor.propTypes = {
+EditorContainer.propTypes = {
   moveWidget: PropTypes.func.isRequired,
   addWidget: PropTypes.func.isRequired,
   flyerStack: PropTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types,
@@ -37,14 +37,14 @@ FlyerStackEditor.propTypes = {
   flyerPossibleSettings: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = (state, ownProps) => (
+const mapStateToProps = (state, { params }) => (
   { flyerInfo: state.flyerInfo,
     flyerStack: state.flyerStack,
     flyerPossibleSettings: state.flyerPossibleSettings,
-    flyerId: ownProps.id }
+    flyerId: params.flyerId }
 );
 
 // const mapDispatchToProps = (dispatch) => {
 // }
 
-export default connect(mapStateToProps, flyerActions)(FlyerStackEditor);
+export default connect(mapStateToProps, flyerActions)(EditorContainer);

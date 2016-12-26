@@ -5,7 +5,7 @@ import Toolkit from '../tools/Toolkit';
 @SortableElement
 class Widget extends Component { // eslint-disable-line react/prefer-stateless-function
   static propTypes = {
-    id: PropTypes.number.isRequired,
+    id: PropTypes.string.isRequired,
     index: PropTypes.number.isRequired,
     editing: PropTypes.bool,
     openWidgetEdit: PropTypes.func.isRequired,

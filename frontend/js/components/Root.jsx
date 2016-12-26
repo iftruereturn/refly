@@ -3,10 +3,12 @@ import { Provider } from 'react-redux';
 import { Router, Route, IndexRoute } from 'react-router';
 
 import App from './App';
+
 import Main from './pages/Main';
-import Editor from './pages/Editor';
-import EditorNewFlyer from './pages/EditorNewFlyer';
 import NotFound from './pages/NotFound';
+
+import EditorContainer from '../containers/EditorContainer';
+import CreateNewFlyerContainer from '../containers/CreateNewFlyerContainer';
 
 // Router goes here
 const Root = ({ store, history }) => (
@@ -14,8 +16,8 @@ const Root = ({ store, history }) => (
     <Router history={history}>
       <Route path="/" component={App}>
         <IndexRoute component={Main} />
-        <Route path="editor" component={EditorNewFlyer} />
-        <Route path="editor/:id" component={Editor} />
+        <Route path="editor" component={CreateNewFlyerContainer} />
+        <Route path="editor/(:flyerId)" component={EditorContainer} />
       </Route>
       <Route path="*" component={NotFound} />
     </Router>

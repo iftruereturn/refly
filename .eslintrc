@@ -15,7 +15,8 @@
     "react/jsx-uses-react": 2,
     "react/jsx-uses-vars": 2,
     "react/react-in-jsx-scope": 2,
-    "react/no-find-dom-node": 0
+    "react/no-find-dom-node": 0,
+    "no-underscore-dangle": 0,
   },
   "plugins": [
     "react"
