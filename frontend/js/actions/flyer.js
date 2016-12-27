@@ -35,7 +35,7 @@ export const addWidget = (type, position) => (dispatch) => {
         type: FlyerActions.ADD_WIDGET,
         payload: {
           position,
-          id: widgetId,
+          _id: `${widgetId}`,
           type: 'TextWidget',
           title: `New text widget ${widgetId}`,
           text: 'Sample text',
@@ -48,7 +48,7 @@ export const addWidget = (type, position) => (dispatch) => {
         type: FlyerActions.ADD_WIDGET,
         payload: {
           position,
-          id: widgetId,
+          _id: `${widgetId}`,
           type: 'ImageWidget',
           title: `New image widget ${widgetId}`,
           image: 'Random image',
@@ -61,7 +61,7 @@ export const addWidget = (type, position) => (dispatch) => {
         type: FlyerActions.ADD_WIDGET,
         payload: {
           position,
-          id: widgetId,
+          _id: `${widgetId}`,
           type: 'HeaderWidget',
           title: `New header widget ${widgetId}`,
           text: 'Sample text',
@@ -74,7 +74,7 @@ export const addWidget = (type, position) => (dispatch) => {
         type: FlyerActions.ADD_WIDGET,
         payload: {
           position,
-          id: widgetId,
+          _id: `${widgetId}`,
           type: 'VideoWidget',
           title: `New video widget ${widgetId}`,
           videoUrl: '',

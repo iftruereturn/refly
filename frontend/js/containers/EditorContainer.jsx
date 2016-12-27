@@ -8,24 +8,26 @@ import AddingPanelBottom from '../components/tools/AddingPanelBottom';
 import SidePanel from '../components/editor/SidePanel';
 
 const EditorContainer = props => (
-  <div className={'flyer-stack-wrapper'}>
-    <Editor
-      {...props}
-      onSortEnd={props.moveWidget}
-      distance={10}
-      lockAxis={'y'}
-      lockToContainerEdges
-      helperClass={'dnd-transparent'}
-    />
-    {
-      props.flyerStack.length > 0 ?
-        null :
-        <AddingPanelBottom addWidget={props.addWidget} />
-    }
-    <SidePanel
-      {...props.flyerPossibleSettings}
-      {...props}
-    />
+  <div className="flyer-editor">
+    <div className="flyer-stack-wrapper">
+      <Editor
+        {...props}
+        onSortEnd={props.moveWidget}
+        distance={10}
+        lockAxis={'y'}
+        lockToContainerEdges
+        helperClass={'dnd-transparent'}
+      />
+      {
+        props.flyerStack.length > 0 ?
+          null :
+          <AddingPanelBottom addWidget={props.addWidget} />
+      }
+      <SidePanel
+        {...props.flyerPossibleSettings}
+        {...props}
+      />
+    </div>
   </div>
 );
 
@@ -43,8 +45,5 @@ const mapStateToProps = (state, { params }) => (
     flyerPossibleSettings: state.flyerPossibleSettings,
     flyerId: params.flyerId }
 );
-
-// const mapDispatchToProps = (dispatch) => {
-// }
 
 export default connect(mapStateToProps, flyerActions)(EditorContainer);
