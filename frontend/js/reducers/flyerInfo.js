@@ -7,10 +7,11 @@ const initialState = {
   isFetching: false,
   isSaving: false,
 
-  id: null,
+  _id: null,
   createdAt: '',
   updatedAt: '',
   owner: '',
+
   background: 'bg-black',
   color: 'black',
   font: 'monospace',
@@ -80,7 +81,7 @@ const flyerInfo = (state = initialState, action) => {
       return {
         ...state,
         isFetching: payload.isFetching,
-        id: payload.id,
+        _id: payload._id,
       };
 
     case FlyerActions.FETCH_FLYER_SUCCESS:
@@ -89,7 +90,7 @@ const flyerInfo = (state = initialState, action) => {
         isFetching: payload.isFetching,
 
         // eslint-disable-next-line no-underscore-dangle
-        id: payload.flyer._id,
+        _id: payload.flyer._id,
         createdAt: payload.flyer.createdAt,
         updatedAt: payload.flyer.updatedAt,
         owner: '',

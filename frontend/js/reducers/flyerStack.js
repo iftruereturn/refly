@@ -35,7 +35,7 @@ const flyerStack = (state = initialState, action) => {
       return state.map((widget) => {
         const { id, editing } = payload;
 
-        if (widget.id === id) {
+        if (widget._id === id) {
           return {
             ...widget,
             editing,
@@ -48,7 +48,7 @@ const flyerStack = (state = initialState, action) => {
       return state.map((widget) => {
         const { id, editing } = payload;
 
-        if (widget.id === id) {
+        if (widget._id === id) {
           return {
             ...widget,
             editing,
@@ -61,14 +61,14 @@ const flyerStack = (state = initialState, action) => {
       return state.filter((widget) => {
         const { id } = payload;
 
-        return (widget.id !== id);
+        return (widget._id !== id);
       });
 
     case FlyerActions.SAVE_WIDGET:
       return state.map((widget) => {
         const { id } = payload;
 
-        if (widget.id === id) {
+        if (widget._id === id) {
           return {
             ...widget,
             ...payload,

@@ -2,15 +2,15 @@ import React, { Component, PropTypes } from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import { SortableContainer } from 'react-sortable-hoc';
 
-import TextWidget from './widgets/TextWidget';
-import ImageWidget from './widgets/ImageWidget';
-import HeaderWidget from './widgets/HeaderWidget';
-import VideoWidget from './widgets/VideoWidget';
+import TextWidget from '../widgets/TextWidget';
+import ImageWidget from '../widgets/ImageWidget';
+import HeaderWidget from '../widgets/HeaderWidget';
+import VideoWidget from '../widgets/VideoWidget';
 
-import AddingPanel from './tools/AddingPanel';
+import AddingPanel from '../tools/AddingPanel';
 
 @SortableContainer
-class Editor extends Component {
+class FlyerCreator extends Component {
   static propTypes = {
     flyerId: PropTypes.string.isRequired,
 
@@ -168,4 +168,4 @@ class Editor extends Component {
   }
 }
 
-export default Editor; // eslint-disable-line new-cap
+export default FlyerCreator; // eslint-disable-line new-cap

@@ -3,14 +3,14 @@ import { connect } from 'react-redux';
 
 import * as flyerActions from '../actions/flyer';
 
-import Editor from '../components/Editor';
+import FlyerCreator from '../components/editor/FlyerCreator';
 import AddingPanelBottom from '../components/tools/AddingPanelBottom';
 import SidePanel from '../components/editor/SidePanel';
 
 const EditorContainer = props => (
   <div className="flyer-editor">
     <div className="flyer-stack-wrapper">
-      <Editor
+      <FlyerCreator
         {...props}
         onSortEnd={props.moveWidget}
         distance={10}
@@ -27,6 +27,7 @@ const EditorContainer = props => (
         {...props.flyerPossibleSettings}
         {...props}
       />
+      <button onClick={props.saveFlyer}>Save flyer</button>
     </div>
   </div>
 );
@@ -34,6 +35,7 @@ const EditorContainer = props => (
 EditorContainer.propTypes = {
   moveWidget: PropTypes.func.isRequired,
   addWidget: PropTypes.func.isRequired,
+  saveFlyer: PropTypes.func.isRequired,
   flyerStack: PropTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types,
   // eslint-disable-next-line react/forbid-prop-types,
   flyerPossibleSettings: PropTypes.object.isRequired,

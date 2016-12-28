@@ -185,7 +185,7 @@ export const createFlyer = (/* template */) => (dispatch) => {
         },
       });
       const path = `editor${location.slice(7)}`;
-      console.log(path);
+      // console.log(path);
       browserHistory.push(path);
     }).catch(() => {
       dispatch({
@@ -210,7 +210,13 @@ export const fetchFlyer = id => (dispatch) => {
     credentials: 'same-origin',
   }).then(response => response.json())
     .then((flyer) => {
-      console.log(flyer);
+      // console.log(flyer);
+
+      // Just for 'key'
+      flyer.stack.forEach((widget) => {
+        widget._id = flyer._id + widgetId; // eslint-disable-line no-param-reassign
+        widgetId += 1;
+      });
 
       dispatch({
         type: FlyerActions.FETCH_FLYER_SUCCESS,
@@ -229,7 +235,46 @@ export const fetchFlyer = id => (dispatch) => {
       });
     });
 };
-/*
+
 export const saveFlyer = () => (dispatch, getState) => {
+  const { flyerInfo, flyerStack } = getState();
+  const flyer = {
+    _id: flyerInfo._id,
+    background: flyerInfo.background,
+    color: flyerInfo.color,
+    font: flyerInfo.font,
+    theme: flyerInfo.theme,
+    stack: flyerStack,
+  };
+  const flyerId = flyerInfo._id;
+
+  dispatch({
+    type: FlyerActions.SAVE_FLYER_REQUEST,
+    payload: {
+      isSaving: true,
+    },
+  });
+
+  return fetch(`/api/flyers/${flyerId}`, {
+    method: 'put',
+    headers: {
+      'Content-type': 'application/json',
+    },
+    body: JSON.stringify(flyer),
+    credentials: 'same-origin',
+  }).then(() => {
+    dispatch({
+      type: FlyerActions.SAVE_FLYER_SUCCESS,
+      payload: {
+        isSaving: false,
+      },
+    });
+  }).catch(() => {
+    dispatch({
+      type: FlyerActions.SAVE_FLYER_FAILURE,
+      payload: {
+        isSaving: false,
+      },
+    });
+  });
 };
-*/
