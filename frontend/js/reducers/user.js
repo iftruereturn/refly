@@ -1,9 +1,9 @@
 import * as UserActions from '../constants/user';
 
 const initialState = {
-  signingUp: false,
-  loggingIn: false,
-  loggingOut: false,
+  isSigningUp: false,
+  isLoggingIn: false,
+  isLoggingOut: false,
 
   username: '',
   isAuthenticated: false,
@@ -16,31 +16,31 @@ const user = (state = initialState, action) => {
     case UserActions.SIGNUP_REQUEST:
       return {
         ...state,
-        signingUp: payload.signingUp,
+        isSigningUp: payload.isSigningUp,
       };
 
     case UserActions.SIGNUP_SUCCESS:
       return {
         ...state,
-        signingUp: payload.signingUp,
+        isSigningUp: payload.isSigningUp,
       };
 
     case UserActions.SIGNUP_FAILURE:
       return {
         ...state,
-        signingUp: payload.signingUp,
+        isSigningUp: payload.isSigningUp,
       };
 
     case UserActions.LOGIN_REQUEST:
       return {
         ...state,
-        loggingIn: payload.loggingIn,
+        isLoggingIn: payload.isLoggingIn,
       };
 
     case UserActions.LOGIN_SUCCESS:
       return {
         ...state,
-        loggingIn: payload.loggingIn,
+        isLoggingIn: payload.isLoggingIn,
         isAuthenticated: payload.isAuthenticated,
         username: payload.username,
       };
@@ -48,19 +48,19 @@ const user = (state = initialState, action) => {
     case UserActions.LOGIN_FAILURE:
       return {
         ...state,
-        loggingIn: payload.loggingIn,
+        isLoggingIn: payload.isLoggingIn,
       };
 
     case UserActions.LOGOUT_REQUEST:
       return {
         ...state,
-        loggingOut: payload.loggingOut,
+        isLoggingOut: payload.isLoggingOut,
       };
 
     case UserActions.LOGOUT_SUCCESS:
       return {
         ...state,
-        loggingOut: payload.loggingOut,
+        isLoggingOut: payload.isLoggingOut,
         isAuthenticated: payload.isAuthenticated,
         username: payload.username,
       };
@@ -68,7 +68,7 @@ const user = (state = initialState, action) => {
     case UserActions.LOGOUT_FAILURE:
       return {
         ...state,
-        loggingOut: payload.loggingOut,
+        isLoggingOut: payload.isLoggingOut,
       };
 
     default:
