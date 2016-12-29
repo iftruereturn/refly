@@ -14,7 +14,7 @@ mongoose.Promise = global.Promise;
 const dburl = process.env.PROD_MONGODB || config.mongo.URL;
 mongoose.connect(dburl);
 
-app.use(express.static(path.join(__dirname, '../', 'public')));
+app.use(express.static('../public/'));
 
 /*
 if (process.env.NODE_ENV === 'development') {
