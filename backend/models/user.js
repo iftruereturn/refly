@@ -3,12 +3,18 @@ const Schema = mongoose.Schema;
 const bcrypt = require('bcrypt');
 
 const UserSchema = new Schema({
-  email: {
-    type: String,
-    index: { unique: true }
-  },
+  username: { type: String, index: { unique: true } },
   password: String,
-  name: String
+  email: { type: String, index: { unique: true } },
+
+  flyers: [Schema.Types.ObjectId],
+
+  possibleSettings: {
+    background: [String],
+    color: [String],
+    font: [String],
+    theme: [String]
+  }
 });
 
  // Compare the passed password with the value in the database. A model method.
