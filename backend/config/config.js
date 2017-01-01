@@ -1,12 +1,14 @@
 // Configuration
-
 const config = {
   app: {
     PORT: 3000,
     KEYS: ['your-session-secret']
   },
   mongo: {
-    URL: '127.0.0.1/refly'
+    URL: 'mongodb://localhost/refly'
+  },
+  jwt: {
+    SECRET: 'Really really secret! Sh!'
   }
 };
 

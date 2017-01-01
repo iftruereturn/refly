@@ -8,12 +8,13 @@ const app = express();
 
 app.use(bodyParser.json());
 
-// db connect
+// DB connect
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 const dburl = process.env.PROD_MONGODB || config.mongo.URL;
 mongoose.connect(dburl);
 
+// Static files
 app.use(express.static('../public/'));
 
 /*
