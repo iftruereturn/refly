@@ -20,21 +20,26 @@ function getFlyer(req, res) {
   const id = req.params.id;
 
   const promiseFlyer = Flyer.findById(id).exec();
+
   promiseFlyer.then(flyer => {
     console.log(flyer);
+
     res.status(200).json(flyer);
   }).catch(err => {
     console.log(err);
+
     res.status(404).end();
   });
 }
 
 function getAllFlyers(req, res) {
   const promiseAllFlyers = Flyer.find().exec();
+
   promiseAllFlyers.then(allFlyers => {
     res.status(200).json(allFlyers);
   }).catch(err => {
     console.log(err);
+
     res.status(404).end();
   });
 }
@@ -43,6 +48,7 @@ function postFlyer(req, res) {
   const newFlyer = new Flyer();
 
   const newFlyerPromise = newFlyer.save();
+
   newFlyerPromise.then(flyer => {
     flyer.stack.push(new HeaderWidget({
       flyerId: flyer.id,
@@ -53,10 +59,12 @@ function postFlyer(req, res) {
     return flyer.save();
   }).then(flyer => {
     console.log('flyer created with _id: ' + flyer.id);
+
     res.location('/flyers/' + flyer.id)
     res.status(201).send('flyer created with _id: ' + flyer.id);
   }).catch(err => {
     console.log(err);
+
     res.status(500).end();
   });
 }
@@ -66,6 +74,7 @@ function updateFlyer(req, res) {
   const updatedProps = req.body;
 
   const updatingFlyerPromise = Flyer.findById(id).exec();
+
   updatingFlyerPromise.then(flyer => {
 
     for (let prop in updatedProps) {
@@ -78,7 +87,7 @@ function updateFlyer(req, res) {
 
           // 1. Get specific constructor by 'type' - (widgetTypes)
           // 2. Call it with widget parameters - (updatedProps[prop][widget]) + flyerId
-          // 3. And then push new widget to flyer stack
+          // 3. And then push new widget to flyer.stack
 
           flyer.stack.push(
             new (widgetTypes[(updatedProps[prop][widget]['type'])])(
@@ -96,6 +105,7 @@ function updateFlyer(req, res) {
     res.status(200).end();
   }).catch(err => {
     console.log(err);
+
     res.status(404).end();
   });
 
@@ -109,6 +119,7 @@ function deleteFlyer(req, res) {
     res.status(200).end();
   }).catch(err => {
     console.log(err);
+
     res.status(404).end();
   });
 }

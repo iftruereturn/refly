@@ -25,7 +25,7 @@ UserSchema.methods.comparePassword = function comparePassword(password, callback
 UserSchema.pre('save', function saveHook(next) {
   const user = this;
 
-  // proceed further only if the password is modified or the user is new
+  // Proceed further only if the password is modified or the user is new
   if (!user.isModified('password')) return next();
 
   return bcrypt.genSalt((saltError, salt) => {
@@ -34,7 +34,7 @@ UserSchema.pre('save', function saveHook(next) {
     return bcrypt.hash(user.password, salt, (hashError, hash) => {
       if (hashError) { return next(hashError); }
 
-      // replace a password string with hash value
+      // Replace a password string with hash value
       user.password = hash;
 
       return next();

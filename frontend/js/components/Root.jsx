@@ -2,11 +2,10 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { Router, Route, IndexRoute } from 'react-router';
 
-import App from './App';
-
 import Main from './pages/Main';
 import NotFound from './pages/NotFound';
 
+import AppContainer from '../containers/AppContainer';
 import EditorContainer from '../containers/EditorContainer';
 import CreateNewFlyerContainer from '../containers/CreateNewFlyerContainer';
 
@@ -14,7 +13,7 @@ import CreateNewFlyerContainer from '../containers/CreateNewFlyerContainer';
 const Root = ({ store, history }) => (
   <Provider store={store}>
     <Router history={history}>
-      <Route path="/" component={App}>
+      <Route path="/" component={AppContainer}>
         <IndexRoute component={Main} />
         <Route path="editor" component={CreateNewFlyerContainer} />
         <Route path="editor/(:flyerId)" component={EditorContainer} />
