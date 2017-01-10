@@ -17,7 +17,9 @@ class AuthContainer extends Component {
       signup, login } = this.props;
 
     return (
-      <div></div>
+      <div>
+
+      </div>
     );
   }
 }
