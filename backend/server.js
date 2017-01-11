@@ -1,8 +1,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const path = require('path');
+const passport = require('passport');
 
-const config = require('./config/config.js');
+const config = require('./config/config');
 
 const app = express();
 
@@ -17,19 +17,13 @@ mongoose.connect(dburl);
 // Static files
 app.use(express.static('../public/'));
 
-/*
-if (process.env.NODE_ENV === 'development') {
-  const webpack = require('webpack');
-  const webpackConfig = require('../webpack.dev.config.js');
-  const compiler = webpack(webpackConfig);
-
-  app.use(require('webpack-dev-middleware')(compiler, {
-    noInfo: true, publicPath: webpackConfig.output.publicPath
-  }));
-
-  app.use(require('webpack-hot-middleware')(compiler));
-}
-*/
+// Passport
+app.use(passport.initialize());
+// Load passport strategies
+const localSignupStrategy = require('./passport/local-signup');
+const localLoginStrategy = require('./passport/local-login');
+passport.use('local-signup', localSignupStrategy);
+passport.use('local-login', localLoginStrategy);
 
 // Set routes
 require('./routes')(app);
