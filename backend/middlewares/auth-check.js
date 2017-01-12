@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 const User = require('../models/user.js');
-const config = require('../config.js');
+const config = require('../config/config.js');
 
 // The Auth Checker middleware function.
 module.exports = (req, res, next) => {
