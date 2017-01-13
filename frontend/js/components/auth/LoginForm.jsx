@@ -5,20 +5,32 @@ class LoginForm extends Component {
     login: PropTypes.func.isRequired,
   }
 
-  processForm(event) {
-    event.preventDefault();
-
+  processForm(e) {
+    e.preventDefault();
+    this.props.login(this.email.value, this.password.value);
   }
 
   render() {
     return (
-      <form action="/" onSubmit={this.processForm}>
+      <form onSubmit={this.processForm}>
+        <h3>Log in</h3>
         <div>
-          email: <input type="text" name="email" />
+          <label htmlFor="email">email:</label>
+          <input
+            type="text"
+            name="email"
+            ref={(input) => this.email = input}
+          />
         </div>
         <div>
-          password: <input type="text" name="password" />
+          <label htmlFor="password">password:</label>
+          <input
+            type="password"
+            name="password"
+            ref={(input) => this.password = input}
+          />
         </div>
+        <input type="submit" value="Enter" />
       </form>
     );
   }
