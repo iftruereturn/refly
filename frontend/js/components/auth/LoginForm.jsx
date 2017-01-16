@@ -5,6 +5,12 @@ class LoginForm extends Component {
     login: PropTypes.func.isRequired,
   }
 
+  constructor(props, context) {
+    super(props, context);
+
+    this.processForm = this.processForm.bind(this);
+  }
+
   processForm(e) {
     e.preventDefault();
     this.props.login(this.email.value, this.password.value);
@@ -19,7 +25,7 @@ class LoginForm extends Component {
           <input
             type="text"
             name="email"
-            ref={(input) => this.email = input}
+            ref={(input) => { this.email = input; }}
           />
         </div>
         <div>
@@ -27,7 +33,7 @@ class LoginForm extends Component {
           <input
             type="password"
             name="password"
-            ref={(input) => this.password = input}
+            ref={(input) => { this.password = input; }}
           />
         </div>
         <input type="submit" value="Enter" />

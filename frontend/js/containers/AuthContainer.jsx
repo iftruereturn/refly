@@ -1,15 +1,15 @@
 import React, { Component, PropTypes } from 'react';
-import { Link } from 'react-router';
 import { connect } from 'react-redux';
+import { Link } from 'react-router';
 
-import userActions from '../actions/user';
+import * as userActions from '../actions/user';
 
 import LoginForm from '../components/auth/LoginForm';
 import SignupForm from '../components/auth/SignupForm';
 
+// eslint-disable-next-line react/prefer-stateless-function
 class AuthContainer extends Component {
   static propTypes = {
-    children: PropTypes.node.isRequired,
     username: PropTypes.string.isRequired,
     isAuthenticated: PropTypes.bool.isRequired,
 
@@ -19,22 +19,39 @@ class AuthContainer extends Component {
 
     signup: PropTypes.func.isRequired,
     login: PropTypes.func.isRequired,
+    logout: PropTypes.func.isRequired,
   }
 
   render() {
-    const { children,
-      username, isAuthenticated,
-      signup, login,
-      isSigningUp, isLoggingIn, isLoggingOut, } = this.props;
+    const { username, isAuthenticated,
+      signup, login, logout,
+      isSigningUp, isLoggingIn, isLoggingOut } = this.props;
 
-    return (
+    const loggedInMarkup = (
+      <div>
+        Already logged in as {username}.
+        <button onClick={logout}>Log out</button>
+        <Link to="/">Go to main page</Link>
+      </div>
+    );
+
+    const loggedOutMarkup = (
       <div>
         { (isSigningUp || isLoggingIn || isLoggingOut) ?
           <div>Wait...</div> :
-            <div>
-              <LoginForm login={login} />
-              <SignupForm signup={signup} />
-            </div>
+          <div>
+            <LoginForm login={login} />
+            <SignupForm signup={signup} />
+          </div>
+        }
+      </div>
+    );
+
+    return (
+      <div>
+        { isAuthenticated ?
+          loggedInMarkup :
+            loggedOutMarkup
         }
       </div>
     );

@@ -14,6 +14,9 @@ const AppContainer = ({ children, username, isAuthenticated }) => (
       <li>
         <Link activeClassName="active-link" to="/editor">Editor</Link>
       </li>
+      <li>
+        <Link activeClassName="active-link" to="/auth">Sign up / Log In</Link>
+      </li>
     </ul>
     { children }
   </div>

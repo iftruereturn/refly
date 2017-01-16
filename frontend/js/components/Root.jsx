@@ -6,8 +6,9 @@ import Main from './pages/Main';
 import NotFound from './pages/NotFound';
 
 import AppContainer from '../containers/AppContainer';
-import EditorContainer from '../containers/EditorContainer';
 import CreateNewFlyerContainer from '../containers/CreateNewFlyerContainer';
+import EditorContainer from '../containers/EditorContainer';
+import AuthContainer from '../containers/AuthContainer';
 
 // Router goes here
 const Root = ({ store, history }) => (
@@ -17,6 +18,7 @@ const Root = ({ store, history }) => (
         <IndexRoute component={Main} />
         <Route path="editor" component={CreateNewFlyerContainer} />
         <Route path="editor/(:flyerId)" component={EditorContainer} />
+        <Route path="auth" component={AuthContainer} />
       </Route>
       <Route path="*" component={NotFound} />
     </Router>

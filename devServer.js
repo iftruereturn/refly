@@ -15,6 +15,10 @@ new WebpackDevServer(webpack(config), {
     '/api/*': {
         target: 'http://localhost:3000/',
         secure: false
+    },
+    '/auth/*': {
+        target: 'http://localhost:3000/',
+        secure: false
     }
   },
 }).listen(port, 'localhost', function (err, result) {

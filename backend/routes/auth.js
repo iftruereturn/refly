@@ -76,6 +76,9 @@ function validateLoginForm(payload) {
 }
 
 function signup(req, res, next)  {
+  console.log('in signup');
+  console.log(req.body);
+
   const validationResult = validateSignupForm(req.body);
   if (!validationResult.success) {
     return res.status(400).json({
@@ -114,6 +117,9 @@ function signup(req, res, next)  {
 }
 
 function login(req, res, next) {
+  console.log('in login');
+  console.log(req.body);
+
   const validationResult = validateLoginForm(req.body);
   if (!validationResult.success) {
     return res.status(400).json({

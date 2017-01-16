@@ -5,6 +5,12 @@ class SignupForm extends Component {
     signup: PropTypes.func.isRequired,
   }
 
+  constructor(props, context) {
+    super(props, context);
+
+    this.processForm = this.processForm.bind(this);
+  }
+
   processForm(e) {
     e.preventDefault();
     this.props.signup(this.email.value, this.password.value, this.username.value);
@@ -19,7 +25,7 @@ class SignupForm extends Component {
           <input
             type="text"
             name="email"
-            ref={(input) => this.email = input}
+            ref={(input) => { this.email = input; }}
           />
         </div>
         <div>
@@ -27,7 +33,7 @@ class SignupForm extends Component {
           <input
             type="password"
             name="password"
-            ref={(input) => this.password = input}
+            ref={(input) => { this.password = input; }}
           />
         </div>
         <div>
@@ -35,7 +41,7 @@ class SignupForm extends Component {
           <input
             type="text"
             name="username"
-            ref={(input) => this.username = input}
+            ref={(input) => { this.username = input; }}
           />
         </div>
         <input type="submit" value="Enter" />

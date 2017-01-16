@@ -1,4 +1,7 @@
+import { browserHistory } from 'react-router';
+
 import * as UserActions from '../constants/user';
+import * as auth from '../lib/auth';
 
 export const signup = (email, password, username) => (dispatch) => {
   dispatch({
@@ -8,7 +11,35 @@ export const signup = (email, password, username) => (dispatch) => {
     },
   });
 
+  return fetch('/auth/signup', {
+    method: 'post',
+    headers: {
+      'Content-type': 'application/json',
+    },
+    body: JSON.stringify({ email, password, username }),
+    credentials: 'same-origin',
+  }).then((response) => {
+    // Because CORS
+    if (response.status === 401
+        || response.status === 404
+        || response.status === 502) {
+      throw new Error();
+    }
 
+    dispatch({
+      type: UserActions.SIGNUP_SUCCESS,
+      payload: {
+        isSigningUp: false,
+      },
+    });
+  }).catch(() => {
+    dispatch({
+      type: UserActions.SIGNUP_FAILURE,
+      payload: {
+        isSigningUp: false,
+      },
+    });
+  });
 };
 
 export const login = (email, password) => (dispatch) => {
@@ -19,7 +50,50 @@ export const login = (email, password) => (dispatch) => {
     },
   });
 
+  return fetch('/auth/login', {
+    method: 'post',
+    headers: {
+      'Content-type': 'application/json',
+    },
+    body: JSON.stringify({ email, password }),
+    credentials: 'same-origin',
+  }).then(response => response.json()
+  ).then((responseData) => {
+    // Because CORS
+    if (responseData.status === 401
+        || responseData.status === 404
+        || responseData.status === 502) {
+      throw new Error();
+    }
 
+    const {
+      // success,
+      // message,
+      token,
+      user,
+    } = responseData;
+
+    auth.authenticateUser(token);
+
+    dispatch({
+      type: UserActions.LOGIN_SUCCESS,
+      payload: {
+        isLoggingIn: false,
+        isAuthenticated: true,
+        username: user.username,
+      },
+    });
+
+
+    browserHistory.push('/');
+  }).catch(() => {
+    dispatch({
+      type: UserActions.LOGIN_FAILED,
+      payload: {
+        isLoggingIn: false,
+      },
+    });
+  });
 };
 
 export const logout = () => (dispatch) => {
@@ -30,5 +104,14 @@ export const logout = () => (dispatch) => {
     },
   });
 
+  auth.deauthenticateUser();
 
+  dispatch({
+    type: UserActions.LOGOUT_SUCCESS,
+    payload: {
+      isLoggingOut: false,
+      isAuthenticated: false,
+      username: '',
+    },
+  });
 };
