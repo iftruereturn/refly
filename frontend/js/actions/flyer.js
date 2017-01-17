@@ -1,6 +1,7 @@
 import { browserHistory } from 'react-router';
 
 import * as FlyerActions from '../constants/flyer';
+import * as auth from '../lib/auth';
 
 let widgetId = 0; // temporary variable
 // Should I generate flyer\widget IDs on the server or on the client?
@@ -173,6 +174,7 @@ export const createFlyer = (/* template */) => (dispatch) => {
     method: 'post',
     headers: {
       'Content-type': 'application/json',
+      Authorization: `bearer ${auth.getToken()}`,
     },
     body: JSON.stringify({}),
     credentials: 'same-origin',
@@ -208,6 +210,9 @@ export const fetchFlyer = id => (dispatch) => {
 
   return fetch(`/api/flyers/${id}`, {
     credentials: 'same-origin',
+    headers: {
+      Authorization: `bearer ${auth.getToken()}`,
+    },
   }).then(response => response.json())
     .then((flyer) => {
       // console.log(flyer);
@@ -259,6 +264,7 @@ export const saveFlyer = () => (dispatch, getState) => {
     method: 'put',
     headers: {
       'Content-type': 'application/json',
+      Authorization: `bearer ${auth.getToken()}`,
     },
     body: JSON.stringify(flyer),
     credentials: 'same-origin',
