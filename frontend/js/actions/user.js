@@ -11,12 +11,17 @@ export const signup = (email, password, username) => (dispatch) => {
     },
   });
 
+  const emailEncoded = encodeURIComponent(email);
+  const passwordEncoded = encodeURIComponent(password);
+  const usernameEncoded = encodeURIComponent(username);
+  const formData = `username=${usernameEncoded}&email=${emailEncoded}&password=${passwordEncoded}`;
+
   return fetch('/auth/signup', {
     method: 'post',
     headers: {
-      'Content-type': 'application/json',
+      'Content-type': 'application/x-www-form-urlencoded',
     },
-    body: JSON.stringify({ email, password, username }),
+    body: formData,
     credentials: 'same-origin',
   }).then((response) => {
     // Because CORS
@@ -50,12 +55,16 @@ export const login = (email, password) => (dispatch) => {
     },
   });
 
+  const emailEncoded = encodeURIComponent(email);
+  const passwordEncoded = encodeURIComponent(password);
+  const formData = `email=${emailEncoded}&password=${passwordEncoded}`;
+
   return fetch('/auth/login', {
     method: 'post',
     headers: {
-      'Content-type': 'application/json',
+      'Content-type': 'application/x-www-form-urlencoded',
     },
-    body: JSON.stringify({ email, password }),
+    body: formData,
     credentials: 'same-origin',
   }).then(response => response.json()
   ).then((responseData) => {

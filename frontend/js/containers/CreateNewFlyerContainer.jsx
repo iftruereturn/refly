@@ -3,16 +3,19 @@ import { connect } from 'react-redux';
 
 import { createFlyer } from '../actions/flyer';
 
-const CreateNewFlyer = props => (
+const CreateNewFlyer = ({
+  createFlyer, // eslint-disable-line no-shadow
+  isCreating,
+}) => (
   <div>
     {
-      props.isCreating ?
+      isCreating ?
         <div>
           Creating
         </div> :
         <div>
           Create new flyer
-          <button onClick={() => { props.createFlyer(); }}>Create</button>
+          <button onClick={createFlyer}>Create</button>
         </div>
     }
   </div>
