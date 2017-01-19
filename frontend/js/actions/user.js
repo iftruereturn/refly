@@ -1,4 +1,5 @@
 import { browserHistory } from 'react-router';
+import jwtDecode from 'jwt-decode';
 
 import * as UserActions from '../constants/user';
 import * as auth from '../lib/auth';
@@ -97,7 +98,7 @@ export const login = (email, password) => (dispatch) => {
     browserHistory.push('/');
   }).catch(() => {
     dispatch({
-      type: UserActions.LOGIN_FAILED,
+      type: UserActions.LOGIN_FAILURE,
       payload: {
         isLoggingIn: false,
       },
@@ -123,4 +124,41 @@ export const logout = () => (dispatch) => {
       username: '',
     },
   });
+};
+
+export const checkAuthentication = () => {
+  if (auth.isUserAuthenticated()) {
+    const token = auth.getToken();
+
+    let decoded;
+    try {
+      decoded = jwtDecode(token);
+      console.log(decoded);
+    } catch (err) {
+      return {
+        type: UserActions.LOGIN_FAILURE,
+        payload: {
+          isLoggingIn: false,
+        },
+      };
+    }
+
+    if (decoded && decoded.username) {
+      return {
+        type: UserActions.LOGIN_SUCCESS,
+        payload: {
+          isLoggingIn: false,
+          isAuthenticated: true,
+          username: decoded.username,
+        },
+      };
+    }
+  }
+
+  return {
+    type: UserActions.LOGIN_FAILURE,
+    payload: {
+      isLoggingIn: false,
+    },
+  };
 };
