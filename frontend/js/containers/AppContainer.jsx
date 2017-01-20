@@ -38,9 +38,13 @@ class AppContainer extends Component {
           <li>
             <Link activeClassName="active-link" onlyActiveOnIndex to="/">Index</Link>
           </li>
-          <li>
-            <Link activeClassName="active-link" to="/editor">Editor</Link>
-          </li>
+          {
+            isAuthenticated ?
+              <li>
+                <Link activeClassName="active-link" to="/editor">Editor</Link>
+              </li> :
+              null
+          }
         </ul>
         { children }
       </div>
