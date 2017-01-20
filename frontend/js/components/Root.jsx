@@ -9,6 +9,7 @@ import AppContainer from '../containers/AppContainer';
 import CreateNewFlyerContainer from '../containers/CreateNewFlyerContainer';
 import EditorContainer from '../containers/EditorContainer';
 import AuthContainer from '../containers/AuthContainer';
+import UserPageContainer from '../containers/UserPageContainer';
 
 // Router goes here
 const Root = ({ store, history }) => (
@@ -19,6 +20,7 @@ const Root = ({ store, history }) => (
         <Route path="editor" component={CreateNewFlyerContainer} />
         <Route path="editor/(:flyerId)" component={EditorContainer} />
         <Route path="auth" component={AuthContainer} />
+        <Route path="user" component={UserPageContainer} />
       </Route>
       <Route path="*" component={NotFound} />
     </Router>

@@ -24,18 +24,22 @@ class AppContainer extends Component {
 
     return (
       <div>
-        { isAuthenticated ?
-          <span>{username}</span> :
-            null }
         <ul>
+          {
+            isAuthenticated ?
+              <li>
+                {username}
+                <Link activeClassName="active-link" to="/user">View Profile</Link>
+              </li> :
+              <li>
+                <Link activeClassName="active-link" to="/auth">Sign up / Log In</Link>
+              </li>
+          }
           <li>
             <Link activeClassName="active-link" onlyActiveOnIndex to="/">Index</Link>
           </li>
           <li>
             <Link activeClassName="active-link" to="/editor">Editor</Link>
-          </li>
-          <li>
-            <Link activeClassName="active-link" to="/auth">Sign up / Log In</Link>
           </li>
         </ul>
         { children }

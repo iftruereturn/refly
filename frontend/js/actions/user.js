@@ -124,6 +124,8 @@ export const logout = () => (dispatch) => {
       username: '',
     },
   });
+
+  browserHistory.push('/');
 };
 
 export const checkAuthentication = () => {
@@ -133,7 +135,6 @@ export const checkAuthentication = () => {
     let decoded;
     try {
       decoded = jwtDecode(token);
-      console.log(decoded);
     } catch (err) {
       return {
         type: UserActions.LOGIN_FAILURE,
