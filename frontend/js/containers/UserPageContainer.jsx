@@ -3,17 +3,14 @@ import { connect } from 'react-redux';
 
 import { logout } from '../actions/user';
 
+import UserInfo from '../components/user/UserInfo';
+
 const UserPageContainer = ({
   username,
   logout, // eslint-disable-line no-shadow
 }) => (
   <div>
-    <div>
-      {username}
-    </div>
-    <div>
-      <button onClick={logout}>Logout</button>
-    </div>
+    <UserInfo username={username} logout={logout} />
   </div>
 );
 
