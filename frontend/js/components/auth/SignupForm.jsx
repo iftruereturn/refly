@@ -8,12 +8,34 @@ class SignupForm extends Component {
   constructor(props, context) {
     super(props, context);
 
-    this.processForm = this.processForm.bind(this);
+    this.state = {
+      email: '',
+      password: '',
+      username: '',
+    };
   }
 
-  processForm(e) {
+  processForm = (e) => {
     e.preventDefault();
-    this.props.signup(this.email.value, this.password.value, this.username.value);
+    this.props.signup(this.state.email, this.state.password, this.state.username);
+  }
+
+  handleEmailChange = (e) => {
+    this.setState({
+      email: e.target.value,
+    });
+  }
+
+  handlePasswordChange = (e) => {
+    this.setState({
+      password: e.target.value,
+    });
+  }
+
+  handleUsernameChange = (e) => {
+    this.setState({
+      username: e.target.value,
+    });
   }
 
   render() {
@@ -25,7 +47,8 @@ class SignupForm extends Component {
           <input
             type="text"
             name="email"
-            ref={(input) => { this.email = input; }}
+            value={this.state.email}
+            onChange={this.handleEmailChange}
           />
         </div>
         <div>
@@ -33,7 +56,8 @@ class SignupForm extends Component {
           <input
             type="password"
             name="password"
-            ref={(input) => { this.password = input; }}
+            value={this.state.password}
+            onChange={this.handlePasswordChange}
           />
         </div>
         <div>
@@ -41,7 +65,8 @@ class SignupForm extends Component {
           <input
             type="text"
             name="username"
-            ref={(input) => { this.username = input; }}
+            value={this.state.username}
+            onChange={this.handleUsernameChange}
           />
         </div>
         <input type="submit" value="Enter" />

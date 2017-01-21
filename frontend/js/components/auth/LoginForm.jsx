@@ -8,12 +8,27 @@ class LoginForm extends Component {
   constructor(props, context) {
     super(props, context);
 
-    this.processForm = this.processForm.bind(this);
+    this.state = {
+      email: '',
+      password: '',
+    };
   }
 
-  processForm(e) {
+  processForm = (e) => {
     e.preventDefault();
-    this.props.login(this.email.value, this.password.value);
+    this.props.login(this.state.email, this.state.password);
+  }
+
+  handleEmailChange = (e) => {
+    this.setState({
+      email: e.target.value,
+    });
+  }
+
+  handlePasswordChange = (e) => {
+    this.setState({
+      password: e.target.value,
+    });
   }
 
   render() {
@@ -25,7 +40,8 @@ class LoginForm extends Component {
           <input
             type="text"
             name="email"
-            ref={(input) => { this.email = input; }}
+            value={this.state.email}
+            onChange={this.handleEmailChange}
           />
         </div>
         <div>
@@ -33,7 +49,8 @@ class LoginForm extends Component {
           <input
             type="password"
             name="password"
-            ref={(input) => { this.password = input; }}
+            value={this.state.password}
+            onChange={this.handlePasswordChange}
           />
         </div>
         <input type="submit" value="Enter" />
