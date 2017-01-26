@@ -156,13 +156,7 @@ function login(req, res, next) {
 }
 
 
-// function logout(req, res) {
-
-// }
-
-
 authRouter.post('/signup', signup);
 authRouter.post('/login', login);
-// authRouter.get('/logout', logout);
 
 module.exports = authRouter;

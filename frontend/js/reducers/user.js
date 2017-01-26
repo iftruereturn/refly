@@ -6,6 +6,7 @@ const initialState = {
   isLoggingOut: false,
 
   username: '',
+  userId: '',
   isAuthenticated: false,
 };
 
@@ -43,6 +44,7 @@ const user = (state = initialState, action) => {
         isLoggingIn: payload.isLoggingIn,
         isAuthenticated: payload.isAuthenticated,
         username: payload.username,
+        userId: payload.userId,
       };
 
     case UserActions.LOGIN_FAILURE:
@@ -63,6 +65,7 @@ const user = (state = initialState, action) => {
         isLoggingOut: payload.isLoggingOut,
         isAuthenticated: payload.isAuthenticated,
         username: payload.username,
+        userId: payload.userId,
       };
 
     case UserActions.LOGOUT_FAILURE:

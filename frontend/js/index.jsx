@@ -4,6 +4,8 @@ import { AppContainer } from 'react-hot-loader';
 import { browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 
+import fetch from 'whatwg-fetch';
+
 import configureStore from './store/configureStore';
 import Root from './components/Root';
 

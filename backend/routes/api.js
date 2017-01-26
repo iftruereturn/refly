@@ -17,9 +17,14 @@ const widgetTypes = {
 
 
 function getFlyer(req, res) {
-  const id = req.params.id;
+  const userId = req.params.userId;
+  const flyerId = req.params.flyerId;
 
-  const promiseFlyer = Flyer.findById(id).exec();
+  //
+  console.dir(req);
+  //
+
+  const promiseFlyer = Flyer.findById(flyerId).exec();
 
   promiseFlyer.then(flyer => {
     console.log(flyer);
@@ -33,6 +38,8 @@ function getFlyer(req, res) {
 }
 
 function getAllFlyers(req, res) {
+  const userId = req.params.userId;
+
   const promiseAllFlyers = Flyer.find().exec();
 
   promiseAllFlyers.then(allFlyers => {
@@ -45,6 +52,8 @@ function getAllFlyers(req, res) {
 }
 
 function postFlyer(req, res) {
+  const userId = req.params.userId;
+
   const newFlyer = new Flyer();
 
   const newFlyerPromise = newFlyer.save();
@@ -70,10 +79,12 @@ function postFlyer(req, res) {
 }
 
 function updateFlyer(req, res) {
-  const id = req.params.id;
+  const userId = req.params.userId;
+  const flyerId = req.params.flyerId;
+
   const updatedProps = req.body;
 
-  const updatingFlyerPromise = Flyer.findById(id).exec();
+  const updatingFlyerPromise = Flyer.findById(flyerId).exec();
 
   updatingFlyerPromise.then(flyer => {
 
@@ -112,9 +123,10 @@ function updateFlyer(req, res) {
 }
 
 function deleteFlyer(req, res) {
-  const id = req.params.id;
+  const userId = req.params.userId;
+  const flyerId = req.params.flyerId;
 
-  const promiseFlyer = Flyer.findByIdAndRemove(id).exec();
+  const promiseFlyer = Flyer.findByIdAndRemove(flyerId).exec();
   promiseFlyer.then(() => {
     res.status(200).end();
   }).catch(err => {
@@ -124,10 +136,12 @@ function deleteFlyer(req, res) {
   });
 }
 
-apiRouter.get('/flyers/:id', getFlyer);
-apiRouter.get('/flyers', getAllFlyers);
-apiRouter.post('/flyers', postFlyer);
-apiRouter.put('/flyers/:id', updateFlyer);
-apiRouter.delete('/flyers/:id', deleteFlyer);
+
+apiRouter.get('/users/:userId/flyers/:flyerId', getFlyer);
+apiRouter.get('/users/:userId/flyers', getAllFlyers);
+apiRouter.post('/users/:userId/flyers', postFlyer);
+apiRouter.put('/users/:userId/flyers/:flyerId', updateFlyer);
+apiRouter.delete('/users/:userId/flyers/:flyerId', deleteFlyer);
+
 
 module.exports = apiRouter;

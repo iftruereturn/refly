@@ -91,6 +91,7 @@ export const login = (email, password) => (dispatch) => {
         isLoggingIn: false,
         isAuthenticated: true,
         username: user.username,
+        userId: user.userId,
       },
     });
 
@@ -122,6 +123,7 @@ export const logout = () => (dispatch) => {
       isLoggingOut: false,
       isAuthenticated: false,
       username: '',
+      userId: '',
     },
   });
 
@@ -151,6 +153,7 @@ export const checkAuthentication = () => {
           isLoggingIn: false,
           isAuthenticated: true,
           username: decoded.username,
+          userId: decoded.userId,
         },
       };
     }

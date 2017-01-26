@@ -162,7 +162,7 @@ export const changeFlyerTheme = theme => ({
   },
 });
 
-export const createFlyer = (/* template */) => (dispatch) => {
+export const createFlyer = (/* template */) => (dispatch, getState) => {
   dispatch({
     type: FlyerActions.CREATE_NEW_FLYER_REQUEST,
     payload: {
@@ -170,7 +170,9 @@ export const createFlyer = (/* template */) => (dispatch) => {
     },
   });
 
-  return fetch('/api/flyers', {
+  const { userId } = getState().user;
+
+  return fetch(`/api/users/${userId}/flyers`, {
     method: 'post',
     headers: {
       'Content-type': 'application/json',
@@ -199,7 +201,7 @@ export const createFlyer = (/* template */) => (dispatch) => {
     });
 };
 
-export const fetchFlyer = id => (dispatch) => {
+export const fetchFlyer = id => (dispatch, getState) => {
   dispatch({
     type: FlyerActions.FETCH_FLYER_REQUEST,
     payload: {
@@ -208,7 +210,9 @@ export const fetchFlyer = id => (dispatch) => {
     },
   });
 
-  return fetch(`/api/flyers/${id}`, {
+  const { userId } = getState().user;
+
+  return fetch(`/api/users/${userId}/flyers/${id}`, {
     credentials: 'same-origin',
     headers: {
       Authorization: `bearer ${auth.getToken()}`,
@@ -260,7 +264,9 @@ export const saveFlyer = () => (dispatch, getState) => {
     },
   });
 
-  return fetch(`/api/flyers/${flyerId}`, {
+  const { userId } = getState().user;
+
+  return fetch(`/api/users/${userId}/flyers/${flyerId}`, {
     method: 'put',
     headers: {
       'Content-type': 'application/json',
