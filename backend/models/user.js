@@ -15,6 +15,9 @@ const UserSchema = new Schema({
     font: [String],
     theme: [String]
   }
+},
+{
+  timestamps: true
 });
 
  // Compare the passed password with the value in the database. A model method.

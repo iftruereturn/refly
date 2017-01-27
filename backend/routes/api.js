@@ -1,3 +1,4 @@
+const flyersApiRightCheckMiddleware = require('../middlewares/flyers-api-rights-check.js');
 const apiRouter = require('express').Router();
 
 const Flyer = require('../models/flyer.js');
@@ -19,10 +20,6 @@ const widgetTypes = {
 function getFlyer(req, res) {
   const userId = req.params.userId;
   const flyerId = req.params.flyerId;
-
-  //
-  console.dir(req);
-  //
 
   const promiseFlyer = Flyer.findById(flyerId).exec();
 
@@ -138,9 +135,10 @@ function deleteFlyer(req, res) {
 
 apiRouter.get('/users/:userId/flyers/:flyerId', getFlyer);
 apiRouter.get('/users/:userId/flyers', getAllFlyers);
-apiRouter.post('/users/:userId/flyers', postFlyer);
-apiRouter.put('/users/:userId/flyers/:flyerId', updateFlyer);
-apiRouter.delete('/users/:userId/flyers/:flyerId', deleteFlyer);
+
+apiRouter.post('/users/:userId/flyers', flyersApiRightCheckMiddleware, postFlyer);
+apiRouter.put('/users/:userId/flyers/:flyerId', flyersApiRightCheckMiddleware, updateFlyer);
+apiRouter.delete('/users/:userId/flyers/:flyerId', flyersApiRightCheckMiddleware, deleteFlyer);
 
 
 module.exports = apiRouter;

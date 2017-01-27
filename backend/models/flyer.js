@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const FlyerSchema = new Schema({
-  owner: String,
+  owner: Schema.Types.ObjectId,
 
   background: String,
   color: String,

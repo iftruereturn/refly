@@ -24,6 +24,10 @@ module.exports = (req, res, next) => {
         return res.status(401).end();
       }
 
+      // Add user to request object
+      req.user = user;
+      req.userId = userId;
+
       return next();
     });
   });
