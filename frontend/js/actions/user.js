@@ -17,7 +17,7 @@ export const signup = (email, password, username) => (dispatch) => {
   const usernameEncoded = encodeURIComponent(username);
   const formData = `username=${usernameEncoded}&email=${emailEncoded}&password=${passwordEncoded}`;
 
-  return fetch('/auth/signup', {
+  return fetch('/api/auth/signup', {
     method: 'post',
     headers: {
       'Content-type': 'application/x-www-form-urlencoded',
@@ -60,7 +60,7 @@ export const login = (email, password) => (dispatch) => {
   const passwordEncoded = encodeURIComponent(password);
   const formData = `email=${emailEncoded}&password=${passwordEncoded}`;
 
-  return fetch('/auth/login', {
+  return fetch('/api/auth/login', {
     method: 'post',
     headers: {
       'Content-type': 'application/x-www-form-urlencoded',

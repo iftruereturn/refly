@@ -97,14 +97,13 @@ function updateFlyer(req, res) {
         for (let widget in updatedProps[prop]) {
 
           // 1. Get specific constructor by 'type' - (widgetTypes)
-          // 2. Call it with widget parameters - (updatedProps[prop][widget]) + flyerId
-          // 3. And then push new widget to flyer.stack
+          let WidgetConstructor = widgetTypes[(updatedProps[prop][widget]['type'])];
 
-          flyer.stack.push(
-            new (widgetTypes[(updatedProps[prop][widget]['type'])])(
-                Object.assign({ flyerId: flyer.id }, updatedProps[prop][widget])
-              )
-          );
+          // 2. Call it with widget parameters - (updatedProps[prop][widget]) + flyerId
+          let newWidget = new WidgetConstructor(Object.assign({ flyerId: flyer.id }, updatedProps[prop][widget]));
+
+          // 3. And then push new widget to flyer.stack
+          flyer.stack.push(newWidget);
         }
       } else {
         flyer[prop] = updatedProps[prop];
