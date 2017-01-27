@@ -3,6 +3,8 @@ const apiRouter = require('express').Router();
 
 const Flyer = require('../models/flyer.js');
 
+const User = require('../models/user.js');
+
 const HeaderWidget = require('../models/widgets/header-widget.js');
 const TextWidget = require('../models/widgets/text-widget.js');
 const ImageWidget = require('../models/widgets/image-widget.js');
@@ -51,7 +53,7 @@ function getAllFlyers(req, res) {
 function postFlyer(req, res) {
   const userId = req.params.userId;
 
-  const newFlyer = new Flyer();
+  const newFlyer = new Flyer({ owner: req.user._id });
 
   const newFlyerPromise = newFlyer.save();
 
@@ -132,6 +134,30 @@ function deleteFlyer(req, res) {
   });
 }
 
+
+function getUser(req, res) {
+  const userId = req.params.userId;
+
+  let response = {};
+
+  const promiseUser = User.findById(userId).exec();
+  promiseUser.then(user => {
+    response.user = user;
+
+    return Flyer.find({ owner: userId }).select('_id').exec();
+  }).then(flyerIds => {
+    response.flyerIds = flyerIds;
+
+    res.status(200).json(response);
+  }).catch(err => {
+    console.log(err);
+
+    res.status(404).end();
+  });
+}
+
+
+apiRouter.get('/users/:userId', getUser);
 
 apiRouter.get('/users/:userId/flyers/:flyerId', getFlyer);
 apiRouter.get('/users/:userId/flyers', getAllFlyers);

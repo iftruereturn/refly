@@ -7,8 +7,6 @@ const UserSchema = new Schema({
   password: String,
   email: { type: String, index: { unique: true } },
 
-  flyers: [Schema.Types.ObjectId],
-
   possibleSettings: {
     background: [String],
     color: [String],
