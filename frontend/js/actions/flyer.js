@@ -170,7 +170,7 @@ export const createFlyer = (/* template */) => (dispatch, getState) => {
     },
   });
 
-  const { userId } = getState().user;
+  const { userId } = getState().auth;
 
   return fetch(`/api/users/${userId}/flyers`, {
     method: 'post',
@@ -210,7 +210,7 @@ export const fetchFlyer = id => (dispatch, getState) => {
     },
   });
 
-  const { userId } = getState().user;
+  const { userId } = getState().auth;
 
   return fetch(`/api/users/${userId}/flyers/${id}`, {
     credentials: 'same-origin',
@@ -264,7 +264,7 @@ export const saveFlyer = () => (dispatch, getState) => {
     },
   });
 
-  const { userId } = getState().user;
+  const { userId } = getState().auth;
 
   return fetch(`/api/users/${userId}/flyers/${flyerId}`, {
     method: 'put',

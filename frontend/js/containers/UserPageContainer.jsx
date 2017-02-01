@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 
-import { logout } from '../actions/user';
+import { logout } from '../actions/auth';
 
 import UserInfo from '../components/user/UserInfo';
 
@@ -22,7 +22,7 @@ UserPageContainer.propTypes = {
 
 const mapStateToProps = state => (
   {
-    username: state.user.username,
+    username: state.auth.username,
   }
 );
 

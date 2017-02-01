@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 
-import * as userActions from '../actions/user';
+import * as userActions from '../actions/auth';
 
 import LoginForm from '../components/auth/LoginForm';
 import SignupForm from '../components/auth/SignupForm';
@@ -60,7 +60,7 @@ class AuthContainer extends Component {
 
 const mapStateToProps = state => (
   {
-    ...state.user,
+    ...state.auth,
   }
 );
 

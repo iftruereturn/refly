@@ -2,17 +2,21 @@ import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
 
 
+import auth from './auth';
 import flyerInfo from './flyerInfo';
 import flyerStack from './flyerStack';
 import flyerPossibleSettings from './flyerPossibleSettings';
-import user from './user';
+import userInfo from './userInfo';
+import userFlyersList from './userFlyersList';
 
 const reflyApp = combineReducers({
   routing: routerReducer,
+  auth,
   flyerInfo,
   flyerStack,
   flyerPossibleSettings,
-  user,
+  userInfo,
+  userFlyersList,
 });
 
 export default reflyApp;

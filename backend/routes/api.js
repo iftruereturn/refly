@@ -140,7 +140,7 @@ function getUser(req, res) {
 
   let response = {};
 
-  const promiseUser = User.findById(userId).exec();
+  const promiseUser = User.findById(userId).select('-password -email').exec();
   promiseUser.then(user => {
     response.user = user;
 

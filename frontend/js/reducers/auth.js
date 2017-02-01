@@ -1,4 +1,4 @@
-import * as UserActions from '../constants/user';
+import * as AuthActions from '../constants/auth';
 
 const initialState = {
   isSigningUp: false,
@@ -10,35 +10,35 @@ const initialState = {
   isAuthenticated: false,
 };
 
-const user = (state = initialState, action) => {
+const auth = (state = initialState, action) => {
   const { type, payload } = action;
 
   switch (type) {
-    case UserActions.SIGNUP_REQUEST:
+    case AuthActions.SIGNUP_REQUEST:
       return {
         ...state,
         isSigningUp: payload.isSigningUp,
       };
 
-    case UserActions.SIGNUP_SUCCESS:
+    case AuthActions.SIGNUP_SUCCESS:
       return {
         ...state,
         isSigningUp: payload.isSigningUp,
       };
 
-    case UserActions.SIGNUP_FAILURE:
+    case AuthActions.SIGNUP_FAILURE:
       return {
         ...state,
         isSigningUp: payload.isSigningUp,
       };
 
-    case UserActions.LOGIN_REQUEST:
+    case AuthActions.LOGIN_REQUEST:
       return {
         ...state,
         isLoggingIn: payload.isLoggingIn,
       };
 
-    case UserActions.LOGIN_SUCCESS:
+    case AuthActions.LOGIN_SUCCESS:
       return {
         ...state,
         isLoggingIn: payload.isLoggingIn,
@@ -47,19 +47,19 @@ const user = (state = initialState, action) => {
         userId: payload.userId,
       };
 
-    case UserActions.LOGIN_FAILURE:
+    case AuthActions.LOGIN_FAILURE:
       return {
         ...state,
         isLoggingIn: payload.isLoggingIn,
       };
 
-    case UserActions.LOGOUT_REQUEST:
+    case AuthActions.LOGOUT_REQUEST:
       return {
         ...state,
         isLoggingOut: payload.isLoggingOut,
       };
 
-    case UserActions.LOGOUT_SUCCESS:
+    case AuthActions.LOGOUT_SUCCESS:
       return {
         ...state,
         isLoggingOut: payload.isLoggingOut,
@@ -68,7 +68,7 @@ const user = (state = initialState, action) => {
         userId: payload.userId,
       };
 
-    case UserActions.LOGOUT_FAILURE:
+    case AuthActions.LOGOUT_FAILURE:
       return {
         ...state,
         isLoggingOut: payload.isLoggingOut,
@@ -79,4 +79,4 @@ const user = (state = initialState, action) => {
   }
 };
 
-export default user;
+export default auth;

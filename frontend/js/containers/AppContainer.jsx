@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 
-import { checkAuthentication } from '../actions/user';
+import { checkAuthentication } from '../actions/auth';
 
 class AppContainer extends Component {
   static propTypes = {
@@ -54,7 +54,7 @@ class AppContainer extends Component {
 
 const mapStateToProps = state => (
   {
-    ...state.user,
+    ...state.auth,
   }
 );
 
