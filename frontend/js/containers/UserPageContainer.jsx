@@ -1,29 +1,69 @@
-import React, { PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
 import { logout } from '../actions/auth';
+import fetchUserInfo from '../actions/user';
 
 import UserInfo from '../components/user/UserInfo';
+import UserFlyersList from '../components/user/UserFlyersList';
 
-const UserPageContainer = ({
-  username,
-  logout, // eslint-disable-line no-shadow
-}) => (
-  <div>
-    <UserInfo username={username} logout={logout} />
-  </div>
-);
+class UserPageContainer extends Component {
+  static propTypes = {
+    authUserId: PropTypes.string.isRequired,
 
-UserPageContainer.propTypes = {
-  username: PropTypes.string.isRequired,
+    userId: PropTypes.string.isRequired,
 
-  logout: PropTypes.func.isRequired,
-};
+    userFlyersList: PropTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types
 
-const mapStateToProps = state => (
+    username: React.PropTypes.string.isRequired,
+    isFetching: React.PropTypes.bool.isRequired,
+
+    logout: PropTypes.func.isRequired,
+    fetchUserInfo: PropTypes.func.isRequired,
+  }
+
+  componentWillMount() {
+    this.props.fetchUserInfo(this.props.userId);
+  }
+
+  render() {
+    const { authUserId,
+      userId,
+      userFlyersList,
+      username,
+      isFetching,
+      logout } = this.props; // eslint-disable-line no-shadow
+
+    return (
+      <div>
+        {
+          isFetching ?
+            <div>
+              Loading...
+            </div> :
+            <div>
+              <UserInfo
+                username={username}
+                isCurrentAuthenticatedUser={authUserId === userId}
+                logout={logout}
+              />
+              <UserFlyersList userFlyersList={userFlyersList} />
+            </div>
+        }
+      </div>
+    );
+  }
+
+}
+
+const mapStateToProps = (state, { params }) => (
   {
-    username: state.auth.username,
+    userId: params.userId,
+    authUserId: state.auth.userId,
+    userFlyersList: state.userFlyersList,
+    username: state.userInfo.username,
+    isFetching: state.userInfo.isFetching,
   }
 );
 
-export default connect(mapStateToProps, { logout })(UserPageContainer);
+export default connect(mapStateToProps, { logout, fetchUserInfo })(UserPageContainer);

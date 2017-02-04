@@ -9,6 +9,7 @@ class AppContainer extends Component {
     children: PropTypes.node.isRequired,
 
     username: PropTypes.string.isRequired,
+    userId: PropTypes.string.isRequired,
     isAuthenticated: PropTypes.bool.isRequired,
 
     checkAuthentication: PropTypes.func.isRequired,
@@ -20,7 +21,7 @@ class AppContainer extends Component {
 
   render() {
     const { children,
-      username, isAuthenticated } = this.props;
+      username, isAuthenticated, userId } = this.props;
 
     return (
       <div>
@@ -29,7 +30,7 @@ class AppContainer extends Component {
             isAuthenticated ?
               <li>
                 {username}
-                <Link activeClassName="active-link" to="/user">View Profile</Link>
+                <Link activeClassName="active-link" to={`/user/${userId}`}>View Profile</Link>
               </li> :
               <li>
                 <Link activeClassName="active-link" to="/auth">Sign up / Log In</Link>

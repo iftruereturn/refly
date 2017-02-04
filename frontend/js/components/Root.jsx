@@ -20,7 +20,7 @@ const Root = ({ store, history }) => (
         <Route path="editor" component={CreateNewFlyerContainer} />
         <Route path="editor/(:flyerId)" component={EditorContainer} />
         <Route path="auth" component={AuthContainer} />
-        <Route path="user" component={UserPageContainer} />
+        <Route path="user/(:userId)" component={UserPageContainer} />
       </Route>
       <Route path="*" component={NotFound} />
     </Router>

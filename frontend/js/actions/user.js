@@ -1,7 +1,7 @@
 import * as UserActions from '../constants/user';
 import * as auth from '../lib/auth';
 
-export const fetchUserInfo = (userId) => (dispatch) => {
+const fetchUserInfo = userId => (dispatch) => {
   dispatch({
     type: UserActions.FETCH_USER_INFO_REQUEST,
     payload: {
@@ -16,7 +16,6 @@ export const fetchUserInfo = (userId) => (dispatch) => {
     },
   }).then(response => response.json())
     .then((data) => {
-
       dispatch({
         type: UserActions.FETCH_USER_INFO_SUCCESS,
         payload: {
@@ -35,3 +34,5 @@ export const fetchUserInfo = (userId) => (dispatch) => {
       });
     });
 };
+
+export default fetchUserInfo;
