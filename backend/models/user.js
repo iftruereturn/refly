@@ -8,10 +8,22 @@ const UserSchema = new Schema({
   email: { type: String, index: { unique: true } },
 
   possibleSettings: {
-    background: [String],
-    color: [String],
-    font: [String],
-    theme: [String]
+    background: [{
+      name: String,
+      value: String,
+    }],
+    color: [{
+      name: String,
+      value: String,
+    }],
+    font: [{
+      name: String,
+      value: String,
+    }],
+    theme: [{
+      name: String,
+      value: String,
+    }]
   }
 },
 {
