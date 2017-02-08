@@ -1,5 +1,6 @@
 const User = require('../models/user.js');
 const PassportLocalStrategy = require('passport-local').Strategy;
+const flyerSettings = require('../config/flyerSettings.js');
 
 // Return the Passport Local Strategy object
 module.exports = new PassportLocalStrategy({
@@ -12,6 +13,7 @@ module.exports = new PassportLocalStrategy({
     username: req.body.username.trim(),
     password: password.trim(),
     email: email.trim(),
+    possibleSettings: flyerSettings
   };
 
   const newUser = new User(userData);

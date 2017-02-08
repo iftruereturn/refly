@@ -1,4 +1,4 @@
-const flyersApiRightCheckMiddleware = require('../middlewares/flyers-api-rights-check.js');
+const flyersApiRightsCheckMiddleware = require('../middlewares/flyers-api-rights-check.js');
 const apiRouter = require('express').Router();
 
 const Flyer = require('../models/flyer.js');
@@ -140,7 +140,7 @@ function getUser(req, res) {
 
   let response = {};
 
-  const promiseUser = User.findById(userId).select('-password -email').exec();
+  const promiseUser = User.findById(userId).select('-password -email -possibleSettings').exec();
   promiseUser.then(user => {
     response.user = user;
 
@@ -156,15 +156,29 @@ function getUser(req, res) {
   });
 }
 
+function getFlyerSettings(req, res) {
+  const userId = req.params.userId;
+
+  const promiseUser = User.findById(userId).select('possibleSettings').exec();
+  promiseUser.then(possibleSettings => {
+    res.status(200).json(possibleSettings);
+  }).catch(err => {
+    console.log(err);
+
+    res.status(404).end();
+  });
+}
+
 
 apiRouter.get('/users/:userId', getUser);
+apiRouter.get('/users/:userId/flyer_settings', flyersApiRightsCheckMiddleware, getFlyerSettings);
 
 apiRouter.get('/users/:userId/flyers/:flyerId', getFlyer);
 apiRouter.get('/users/:userId/flyers', getAllFlyers);
 
-apiRouter.post('/users/:userId/flyers', flyersApiRightCheckMiddleware, postFlyer);
-apiRouter.put('/users/:userId/flyers/:flyerId', flyersApiRightCheckMiddleware, updateFlyer);
-apiRouter.delete('/users/:userId/flyers/:flyerId', flyersApiRightCheckMiddleware, deleteFlyer);
+apiRouter.post('/users/:userId/flyers', flyersApiRightsCheckMiddleware, postFlyer);
+apiRouter.put('/users/:userId/flyers/:flyerId', flyersApiRightsCheckMiddleware, updateFlyer);
+apiRouter.delete('/users/:userId/flyers/:flyerId', flyersApiRightsCheckMiddleware, deleteFlyer);
 
 
 module.exports = apiRouter;

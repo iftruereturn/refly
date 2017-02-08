@@ -8,22 +8,23 @@ const UserSchema = new Schema({
   email: { type: String, index: { unique: true } },
 
   possibleSettings: {
-    background: [{
+    backgrounds: [{
       name: String,
       value: String,
     }],
-    color: [{
+    colors: [{
       name: String,
       value: String,
     }],
-    font: [{
+    fonts: [{
       name: String,
       value: String,
     }],
-    theme: [{
+    themes: [{
       name: String,
       value: String,
-    }]
+    }],
+    flyerStackSize: Number
   }
 },
 {
