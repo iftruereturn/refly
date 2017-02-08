@@ -3,7 +3,7 @@ import React, { PropTypes } from 'react';
 const BackgroundSelector = ({ backgrounds, changeFlyerBackground }) => (
   <div>
     Background:
-    { backgrounds.map((background, i) => (
+    { backgrounds && backgrounds.map((background, i) => (
       <button
         key={i}
         className="selector-item"
@@ -16,7 +16,7 @@ const BackgroundSelector = ({ backgrounds, changeFlyerBackground }) => (
 );
 
 BackgroundSelector.propTypes = {
-  backgrounds: PropTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types,
+  backgrounds: PropTypes.array, // eslint-disable-line react/forbid-prop-types,
   changeFlyerBackground: PropTypes.func.isRequired,
 };
 

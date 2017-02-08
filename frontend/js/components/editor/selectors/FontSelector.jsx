@@ -3,7 +3,7 @@ import React, { PropTypes } from 'react';
 const FontSelector = ({ fonts, changeFlyerFont }) => (
   <div>
     Font:
-    { fonts.map((font, i) => (
+    { fonts && fonts.map((font, i) => (
       <button
         key={i}
         className="selector-item"
@@ -16,7 +16,7 @@ const FontSelector = ({ fonts, changeFlyerFont }) => (
 );
 
 FontSelector.propTypes = {
-  fonts: PropTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types,
+  fonts: PropTypes.array, // eslint-disable-line react/forbid-prop-types,
   changeFlyerFont: PropTypes.func.isRequired,
 };
 

@@ -92,6 +92,7 @@ export const login = (email, password) => (dispatch) => {
         isAuthenticated: true,
         username: user.username,
         userId: user.userId,
+        possibleSettings: user.possibleSettings,
       },
     });
 
@@ -130,39 +131,65 @@ export const logout = () => (dispatch) => {
   browserHistory.push('/');
 };
 
-export const checkAuthentication = () => {
+export const checkAuthentication = () => (dispatch) => {
   if (auth.isUserAuthenticated()) {
-    const token = auth.getToken();
+    dispatch({
+      type: AuthActions.LOGIN_REQUEST,
+      payload: {
+        isLoggingIn: true,
+      },
+    });
 
     let decoded;
+    let token;
+
     try {
+      token = auth.getToken();
       decoded = jwtDecode(token);
     } catch (err) {
-      return {
+      dispatch({
         type: AuthActions.LOGIN_FAILURE,
         payload: {
           isLoggingIn: false,
         },
-      };
+      });
+
+      return;
     }
 
     if (decoded && decoded.username) {
-      return {
-        type: AuthActions.LOGIN_SUCCESS,
+      fetch(`/api/users/${decoded.userId}/flyer_settings`, {
+        credentials: 'same-origin',
+        headers: {
+          Authorization: `bearer ${token}`,
+        },
+      }).then(response => response.json())
+      .then((responseData) => {
+        dispatch({
+          type: AuthActions.LOGIN_SUCCESS,
+          payload: {
+            isLoggingIn: false,
+            isAuthenticated: true,
+            username: decoded.username,
+            userId: decoded.userId,
+            possibleSettings: responseData.possibleSettings,
+          },
+        });
+      }).catch(() => {
+        dispatch({
+          type: AuthActions.LOGIN_FAILURE,
+          payload: {
+            isLoggingIn: false,
+          },
+        });
+      });
+    } else {
+      dispatch({
+        type: AuthActions.LOGIN_FAILURE,
         payload: {
           isLoggingIn: false,
-          isAuthenticated: true,
-          username: decoded.username,
-          userId: decoded.userId,
         },
-      };
+      });
     }
   }
-
-  return {
-    type: AuthActions.LOGIN_FAILURE,
-    payload: {
-      isLoggingIn: false,
-    },
-  };
 };

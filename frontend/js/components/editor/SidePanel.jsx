@@ -19,16 +19,16 @@ const SidePanel = ({
 );
 
 SidePanel.propTypes = {
-  themes: PropTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types,
+  themes: PropTypes.array, // eslint-disable-line react/forbid-prop-types,
   changeFlyerTheme: PropTypes.func.isRequired,
 
-  backgrounds: PropTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types,
+  backgrounds: PropTypes.array, // eslint-disable-line react/forbid-prop-types,
   changeFlyerBackground: PropTypes.func.isRequired,
 
-  fonts: PropTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types,
+  fonts: PropTypes.array, // eslint-disable-line react/forbid-prop-types,
   changeFlyerFont: PropTypes.func.isRequired,
 
-  colors: PropTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types,
+  colors: PropTypes.array, // eslint-disable-line react/forbid-prop-types,
   changeFlyerColor: PropTypes.func.isRequired,
 };
 

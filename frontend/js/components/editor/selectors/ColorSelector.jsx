@@ -3,7 +3,7 @@ import React, { PropTypes, Component } from 'react';
 // eslint-disable-next-line react/prefer-stateless-function
 class ColorSelector extends Component {
   static propTypes = {
-    colors: PropTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types,
+    colors: PropTypes.array, // eslint-disable-line react/forbid-prop-types,
     changeFlyerColor: PropTypes.func.isRequired,
   }
 
@@ -28,7 +28,7 @@ class ColorSelector extends Component {
     return (
       <div>
         Color:
-        { colors.map((color, i) => (
+        { colors && colors.map((color, i) => (
           <button
             key={i}
             className="selector-item"
