@@ -43,11 +43,11 @@ module.exports = {
       },
       {
         test:     /\.scss$/,
-        loaders:  ['style-loader', 'css-loader?modules&sourceMap&localIdentName=[local]___[hash:base64:5]', 'postcss-loader', 'resolve-url-loader', 'sass-loader?sourceMap']
+        loaders:  ['style-loader', 'css-loader?sourceMap', 'postcss-loader', 'resolve-url-loader', 'sass-loader?sourceMap']
       },
       {
         test:     /\.css$/,
-        loaders:  ['style-loader', 'css-loader?modules&sourceMap&localIdentName=[local]___[hash:base64:5]']
+        loaders:  ['style-loader', 'css-loader?sourceMap']
       },
       {
         test:     /\.(png|jpg|svg|ttf|otf|eot|woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
