@@ -1,0 +1,43 @@
+
+.flyer-stack {
+  min-height: 10px;
+  margin: auto;
+  transition: 300ms ease-in-out;
+}
+
+
+.dnd-transparent {
+  opacity: 0.7;
+}
+
+
+.widget-transition-enter {
+  opacity: 0.01;
+  transform: scale(0, 0);
+}
+
+.widget-transition-enter.widget-transition-enter-active {
+  opacity: 1;
+  transform: scale(1, 1);
+  transition: 300ms ease-in-out;
+}
+
+.widget-transition-leave {
+  opacity: 1;
+  transform: scale(1, 1);
+}
+
+.widget-transition-leave.widget-transition-leave-active {
+  opacity: 0.01;
+  transform: scale(0, 0);
+  transition: 300ms ease-in-out;
+}
+
+.widget-transition-appear {
+  opacity: 0.01;
+}
+
+.widget-transition-appear.widget-transition-appear-active {
+  opacity: 1;
+  transition: opacity 300ms ease-in-out;
+}
