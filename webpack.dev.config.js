@@ -6,11 +6,12 @@ module.exports = {
   devtool: 'eval',
 
   entry: [
-    // 'webpack-dev-server/client?http://localhost:8080',
-    // 'webpack/hot/only-dev-server',
-    'webpack-hot-middleware/client',
+    'webpack-dev-server/client?http://localhost:8080',
+    'webpack/hot/only-dev-server',
+    // 'webpack-hot-middleware/client',
     'react-hot-loader/patch',
-    './frontend/js/index.jsx'
+    './frontend/js/index.jsx',
+    './frontend/styles/main.scss'
   ],
 
   output: {

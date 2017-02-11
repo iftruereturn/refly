@@ -9,8 +9,6 @@ import 'whatwg-fetch';
 import configureStore from './store/configureStore';
 import Root from './components/Root';
 
-import './../styles/main.scss';
-
 const store = configureStore();
 const history = syncHistoryWithStore(browserHistory, store);
 
