@@ -44,7 +44,6 @@ class Widget extends Component { // eslint-disable-line react/prefer-stateless-f
         }}
       >
         <Toolkit
-          className={'toolkit'}
           deleteWidget={deleteWidget}
           editing={editing}
           openWidgetEdit={openWidgetEdit}

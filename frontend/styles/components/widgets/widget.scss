@@ -4,7 +4,7 @@
   // font-family: monospace;
   // border: 1px solid white;
   margin: none;
-  // border-top: 3px solid #343434;
+  border-top: 3px solid #343434;
   min-width: 600px;
   min-height: 150px;
   user-select: none;
@@ -12,17 +12,19 @@
   // experimental
   will-change: transition;
 
-  .toolkit {
+  &__toolkit {
     visibility: hidden;
   }
-}
 
-.widget:hover {
+  &:hover & {
 
-  .toolkit {
-    visibility: visible;
+    &__toolkit {
+      visibility: visible;
+    }
   }
 }
+
+
 
 .text-widget {
   background-color: #2196F3;

@@ -1,6 +1,10 @@
 
 @import "~normalize.css/normalize";
 
+* {
+  box-sizing: border-box;
+}
+
 html {
   overflow-y: scroll;
 }

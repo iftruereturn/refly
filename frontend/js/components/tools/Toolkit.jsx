@@ -9,21 +9,29 @@ const Toolkit = ({
   showAddingPanel,
   index,
 }) => (
-  <div className="toolkit">
+  <div className="widget__toolkit toolkit">
     <button
+      className="toolkit__button toolkit__button_theme_delete"
       onClick={() => { deleteWidget(id); }}
     >
       [x]
     </button>
     <button
+      className="toolkit__button toolkit__button_theme_edit"
       onClick={() => { (!editing ? openWidgetEdit : closeWidgetEdit)(id); }}
     >
       {!editing ? 'Edit' : 'Cancel'}
     </button>
-    <button onClick={() => { showAddingPanel(index); }}>
+    <button
+      className="toolkit__button toolkit__button_theme_add-top"
+      onClick={() => { showAddingPanel(index); }}
+    >
       Add ^
     </button>
-    <button onClick={() => { showAddingPanel(index + 1); }}>
+    <button
+      className="toolkit__button toolkit__button_theme_add-bottom"
+      onClick={() => { showAddingPanel(index + 1); }}
+    >
       Add v
     </button>
   </div>

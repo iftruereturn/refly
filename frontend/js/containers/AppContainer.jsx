@@ -24,30 +24,34 @@ class AppContainer extends Component {
       username, isAuthenticated, userId } = this.props;
 
     return (
-      <div>
-        <ul>
+      <div className={'app-container'}>
+        <ul className={'app-container-menu'}>
           {
             isAuthenticated ?
-              <li>
-                {username}
+              <li className={'app-container-menu-item'}>
+                <div className={'app-container-menu-item-username'}>
+                  {username}
+                </div>
                 <Link activeClassName="active-link" to={`/user/${userId}`}>View Profile</Link>
               </li> :
-              <li>
+              <li className={'app-container-menu-item'}>
                 <Link activeClassName="active-link" to="/auth">Sign up / Log In</Link>
               </li>
           }
-          <li>
-            <Link activeClassName="active-link" onlyActiveOnIndex to="/">Index</Link>
+          <li className={'app-container-menu-item'}>
+            <Link activeClassName="active-link" onlyActiveOnIndex to="/">Main</Link>
           </li>
           {
             isAuthenticated ?
-              <li>
+              <li className={'app-container-menu-item'}>
                 <Link activeClassName="active-link" to="/editor">Editor</Link>
               </li> :
               null
           }
         </ul>
-        { children }
+        <div className={'app-container-content'}>
+          { children }
+        </div>
       </div>
     );
   }

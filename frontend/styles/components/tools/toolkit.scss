@@ -1,0 +1,13 @@
+
+.toolkit {
+  display: flex;
+
+  &__button {
+    background-color: white;
+    border: 1px solid black;
+
+    &_theme_edit {
+      align-self: flex-end;
+    }
+  }
+}

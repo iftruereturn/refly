@@ -28,7 +28,7 @@ class AuthContainer extends Component {
       isSigningUp, isLoggingIn, isLoggingOut } = this.props;
 
     const loggedInMarkup = (
-      <div>
+      <div className={'auth-container-logged-in'}>
         Already logged in as {username}.
         <button onClick={logout}>Log out</button>
         <Link to="/">Go to main page</Link>
@@ -36,10 +36,10 @@ class AuthContainer extends Component {
     );
 
     const loggedOutMarkup = (
-      <div>
+      <div className={'auth-container-logged-out'}>
         { (isSigningUp || isLoggingIn || isLoggingOut) ?
           <div>Wait...</div> :
-          <div>
+          <div className={'auth-container-logged-out-forms'}>
             <LoginForm login={login} />
             <SignupForm signup={signup} />
           </div>
@@ -48,7 +48,7 @@ class AuthContainer extends Component {
     );
 
     return (
-      <div>
+      <div className={'auth-container'}>
         { isAuthenticated ?
           loggedInMarkup :
             loggedOutMarkup
